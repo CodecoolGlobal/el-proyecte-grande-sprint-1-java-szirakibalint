@@ -11,8 +11,8 @@ import java.util.Set;
 @RestController
 @RequestMapping("/api")
 public class APIController {
-    private CryptocurrencyDAO cryptocurrencyDAO;
-    private Portfolio portfolio;
+    private final CryptocurrencyDAO cryptocurrencyDAO;
+    private final Portfolio portfolio;
 
     @Autowired
     public APIController(CryptocurrencyDAO cryptocurrencyDAO, Portfolio portfolio) {
@@ -37,7 +37,7 @@ public class APIController {
             return "Invalid id";
         }
         if (portfolio.buyCrypto(cryptocurrency, amount)) {
-            return "Bought " + String.valueOf(amount) + " of " + cryptocurrency.getName();
+            return "Bought " + amount + " of " + cryptocurrency.getName();
         } else {
             return "Transaction to buy currency failed";
         }
@@ -54,5 +54,10 @@ public class APIController {
         } else {
             return "Not enough " + cryptocurrency.getName();
         }
+    }
+
+    @GetMapping("/portfolio")
+    public Portfolio getPortfolio() {
+        return portfolio;
     }
 }
