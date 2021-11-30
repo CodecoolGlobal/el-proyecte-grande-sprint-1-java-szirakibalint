@@ -2,6 +2,7 @@ package com.codecool.codecoin.controller;
 
 import com.codecool.codecoin.dao.CryptocurrencyDAO;
 import com.codecool.codecoin.model.Cryptocurrency;
+import com.codecool.codecoin.model.Portfolio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +12,12 @@ import java.util.Set;
 @RequestMapping("/api")
 public class APIController {
     private CryptocurrencyDAO cryptocurrencyDAO;
+    private Portfolio portfolio;
 
     @Autowired
-    public APIController(CryptocurrencyDAO cryptocurrencyDAO) {
+    public APIController(CryptocurrencyDAO cryptocurrencyDAO, Portfolio portfolio) {
         this.cryptocurrencyDAO = cryptocurrencyDAO;
+        this.portfolio = portfolio;
     }
 
     @GetMapping("/coins")
@@ -29,11 +32,27 @@ public class APIController {
 
     @PostMapping("/coins/{id}")
     public String buyCurrency(@PathVariable String id, @RequestParam int amount) {
-        return "Bought " + String.valueOf(amount) + " of " + id;
+        Cryptocurrency cryptocurrency = getCurrencyById(id);
+        if (cryptocurrency == null) {
+            return "Invalid id";
+        }
+        if (portfolio.buyCrypto(cryptocurrency, amount)) {
+            return "Bought " + String.valueOf(amount) + " of " + cryptocurrency.getName();
+        } else {
+            return "Transaction to buy currency failed";
+        }
     }
 
     @PutMapping("/coins/{id}")
     public String sellCurrency(@PathVariable String id, @RequestParam int amount) {
-        return "Sold " + String.valueOf(amount) + " of " + id;
+        Cryptocurrency cryptocurrency = getCurrencyById(id);
+        if (cryptocurrency == null) {
+            return "Invalid id";
+        }
+        if (portfolio.sellCrypto(cryptocurrency, amount)) {
+            return "Sold " + amount + " of " + cryptocurrency.getName();
+        } else {
+            return "Not enough " + cryptocurrency.getName();
+        }
     }
 }
