@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface CryptocurrencyDAO {
     Set<Cryptocurrency> getAll();
-    Cryptocurrency get(String id);
+    Cryptocurrency getCurrencyById(String id);
 }
