@@ -1,12 +1,10 @@
 package com.codecool.codecoin.model;
 
-import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Portfolio {
-
-    private Map<Cryptocurrency, Integer> currencies;
+    private final Map<Cryptocurrency, Integer> currencies;
     private static Portfolio instance;
 
     private Portfolio() {
@@ -18,6 +16,10 @@ public class Portfolio {
             instance = new Portfolio();
         }
         return instance;
+    }
+
+    public Map<Cryptocurrency, Integer> getCurrencies() {
+        return currencies;
     }
 
     public boolean buyCrypto(Cryptocurrency currency, int amount) {
