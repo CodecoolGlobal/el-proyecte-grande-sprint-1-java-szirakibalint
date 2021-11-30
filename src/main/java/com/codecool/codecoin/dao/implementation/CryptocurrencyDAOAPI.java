@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -30,7 +31,13 @@ public class CryptocurrencyDAOAPI implements CryptocurrencyDAO {
     }
 
     @Override
-    public Cryptocurrency get(String id) {
-        return null;
+    public Cryptocurrency getCurrencyById(String id) {
+        List<Cryptocurrency> data = webClient.get()
+                .uri("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=" + id)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<Cryptocurrency>>() {})
+                .block();
+        return (data != null) && (data.size() == 1) ? data.get(0) : null;
     }
 }
