@@ -89,4 +89,9 @@ public class Cryptocurrency {
     public BigDecimal getAmount() {
         return amount;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
