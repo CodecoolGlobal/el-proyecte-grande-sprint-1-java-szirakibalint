@@ -29,6 +29,9 @@ public class APIController {
         this.portfolio = portfolio;
     }
 
+    /** Fetches all {@link Cryptocurrency} using the {@link CryptocurrencyDAO}.
+     * @return Set of all {@link Cryptocurrency}
+     */
     @GetMapping("/coins")
     public Set<Cryptocurrency> getAll() {
         return cryptocurrencyDAO.getAll();
