@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.Set;
 
+/**
+ * A class for API endpoint methods.
+ */
 @RestController
 @RequestMapping("/api")
 public class APIController {
