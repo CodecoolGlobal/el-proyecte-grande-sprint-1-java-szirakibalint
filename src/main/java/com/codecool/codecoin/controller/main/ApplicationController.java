@@ -59,4 +59,17 @@ public class ApplicationController {
         model.addAttribute("totalBalance", totalBalance);
         return "portfolio";
     }
+
+    @GetMapping("/coins/{coinId}/buy")
+    public String buyCoin(@PathVariable String coinId, Model model) {
+        Portfolio portfolio = apiController.getPortfolio();
+        Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
+        if (cryptocurrency == null) {
+            return "error";
+        } else {
+            model.addAttribute("balance", portfolio.getCurrencies().get(CurrencyType.USD));
+            model.addAttribute("cryptocurrency", cryptocurrency);
+            return "buy";
+        }
+    }
 }
