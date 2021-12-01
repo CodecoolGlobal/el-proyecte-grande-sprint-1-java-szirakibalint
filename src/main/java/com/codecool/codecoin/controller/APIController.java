@@ -18,6 +18,11 @@ public class APIController {
     private final CryptocurrencyDAO cryptocurrencyDAO;
     private final Portfolio portfolio;
 
+    /**
+     * Creates an {@link APIController} instance.
+     * @param cryptocurrencyDAO used for accessing {@link Cryptocurrency} data
+     * @param portfolio used for handling buy and sell logic
+     */
     @Autowired
     public APIController(CryptocurrencyDAO cryptocurrencyDAO, Portfolio portfolio) {
         this.cryptocurrencyDAO = cryptocurrencyDAO;
