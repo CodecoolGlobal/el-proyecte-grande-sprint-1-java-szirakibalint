@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div th:replace="navbar.html :: navbar"></div>
+<div th:replace="navbar.html :: navbar"></div>
 <div class="header">
     <h1>Currencies</h1>
 </div>
@@ -29,10 +29,10 @@
 </div>
     <div class="currencies">
         <div th:each="currency: ${allCurrencies}" class="currency">
-            <p class="name" th:text="${currency.name}"></p>
+            <a th:href="@{'/coins/' + ${currency.id}}"><p class="name" th:text="${currency.name}"></p></a>
             <p class="symbol" th:text="${currency.symbol}"></p>
             <img class="currency-image" th:src="${currency.image}">
-            <p class="amount" th:text="${currency.amount}"></p>
+            <p class="amount" th:text="${currency.currentPrice}"></p>
             <p class="price-change-percentage-24h" th:text="${currency.priceChangePercentage24h}"></p>
         </div>
     </div>
