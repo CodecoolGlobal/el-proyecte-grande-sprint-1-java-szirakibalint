@@ -31,6 +31,10 @@ public class Portfolio {
         return cryptoCurrencies;
     }
 
+    /**
+     * Get currency ({@link CurrencyType}) balances from Portfolio.
+     * @return currency types and amounts as key-value pairs in a Map.
+     */
     public Map<CurrencyType, BigDecimal> getCurrencies() {
         return currencies;
     }
