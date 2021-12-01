@@ -45,6 +45,12 @@ public class ApplicationController {
         return "coins";
     }
 
+    /**
+     * Display detailed coin page when visiting "/coins/{coinId}"
+     * @param coinId an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
+     * @param model the object used to store data for the template
+     * @return coin details page template if coin exists, else error page template
+     */
     @GetMapping("/coins/{coinId}")
     public String coinDetails(@PathVariable String coinId, Model model) {
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
