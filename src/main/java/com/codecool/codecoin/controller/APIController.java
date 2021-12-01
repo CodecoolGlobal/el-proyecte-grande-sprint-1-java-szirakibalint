@@ -37,6 +37,11 @@ public class APIController {
         return cryptocurrencyDAO.getAll();
     }
 
+    /**
+     * Fetches a {@link Cryptocurrency} using the {@link CryptocurrencyDAO}.
+     * @param id an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
+     * @return Cryptocurrency object if a match is found, else null.
+     */
     @GetMapping("/coins/{id}")
     public Cryptocurrency getCurrencyById(@PathVariable String id) {
         return cryptocurrencyDAO.getCurrencyById(id);
