@@ -1,16 +1,19 @@
 package com.codecool.codecoin.model;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Portfolio {
-    private final Map<Cryptocurrency, BigDecimal> currencies;
+    private final Map<Cryptocurrency, BigDecimal> cryptoCurrencies;
+    private final Map<CurrencyType, BigDecimal> currencies;
     private static Portfolio instance;
 
     private Portfolio() {
-        currencies = new HashMap<>();
+        cryptoCurrencies = new HashMap<>();
+        currencies = new HashMap<>(){{
+            put(CurrencyType.USD, BigDecimal.valueOf(20000));
+        }};
     }
 
     public static Portfolio getInstance() {
@@ -20,22 +23,34 @@ public class Portfolio {
         return instance;
     }
 
-    public Map<Cryptocurrency, BigDecimal> getCurrencies() {
+    public Map<Cryptocurrency, BigDecimal> getCryptoCurrencies() {
+        return cryptoCurrencies;
+    }
+
+    public Map<CurrencyType, BigDecimal> getCurrencies() {
         return currencies;
     }
 
-    public boolean buyCrypto(Cryptocurrency currency, BigDecimal amount) {
-        if (!currencies.containsKey(currency)) {
-            currencies.put(currency, amount);
+    public boolean buyCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
+        BigDecimal cost = cryptoCurrency.getCurrentPrice().multiply(amount);
+        if (currencies.get(CurrencyType.USD).compareTo(cost) > -1) {
+            currencies.put(CurrencyType.USD, currencies.get(CurrencyType.USD).subtract(cost));
+            if (!cryptoCurrencies.containsKey(cryptoCurrency)) {
+                cryptoCurrencies.put(cryptoCurrency, amount);
+            } else {
+                cryptoCurrencies.put(cryptoCurrency, cryptoCurrencies.get(cryptoCurrency).add(amount));
+            }
+            return true;
         } else {
-            currencies.put(currency, currencies.get(currency).add(amount));
+            return false;
         }
-        return true;
     }
 
-    public boolean sellCrypto(Cryptocurrency currency, BigDecimal amount) {
-        if (currencies.containsKey(currency) && currencies.get(currency).compareTo(amount) > -1) {
-            currencies.put(currency, currencies.get(currency).subtract(amount));
+    public boolean sellCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
+        BigDecimal value = cryptoCurrency.getCurrentPrice().multiply(amount);
+        if (cryptoCurrencies.containsKey(cryptoCurrency) && cryptoCurrencies.get(cryptoCurrency).compareTo(amount) > -1) {
+            cryptoCurrencies.put(cryptoCurrency, cryptoCurrencies.get(cryptoCurrency).subtract(amount));
+            currencies.put(CurrencyType.USD, currencies.get(CurrencyType.USD).add(value));
             return true;
         }
         return false;
