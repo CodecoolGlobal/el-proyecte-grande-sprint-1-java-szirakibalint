@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -54,7 +55,8 @@ public class APIController {
      * @return the outcome of the transaction as a string
      */
     @PostMapping("/coins/{id}")
-    public String buyCurrency(@PathVariable String id, @RequestParam BigDecimal amount) {
+    public String buyCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
+        BigDecimal amount = data.get("amount");
         Cryptocurrency cryptocurrency = getCurrencyById(id);
         if (cryptocurrency == null) {
             return "Invalid id";
@@ -73,7 +75,8 @@ public class APIController {
      * @return the outcome of the transaction as a string
      */
     @PutMapping("/coins/{id}")
-    public String sellCurrency(@PathVariable String id, @RequestParam BigDecimal amount) {
+    public String sellCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
+        BigDecimal amount = data.get("amount");
         Cryptocurrency cryptocurrency = getCurrencyById(id);
         if (cryptocurrency == null) {
             return "Invalid id";
