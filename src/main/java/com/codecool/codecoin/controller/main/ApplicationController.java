@@ -72,4 +72,20 @@ public class ApplicationController {
             return "buy";
         }
     }
+
+    @GetMapping("/coins/{coinId}/sell")
+    public String sellCoin(@PathVariable String coinId, Model model) {
+        Portfolio portfolio = apiController.getPortfolio();
+        Map<CurrencyType, BigDecimal> currencies = portfolio.getCurrencies();
+        Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
+        Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
+        if (cryptocurrency == null) {
+            return "error";
+        } else {
+            model.addAttribute("balance", currencies.get(CurrencyType.USD));
+            model.addAttribute("cryptocurrency", cryptocurrency);
+            model.addAttribute("amount", cryptocurrencies.getOrDefault(cryptocurrency, BigDecimal.ZERO));
+            return "sell";
+        }
+    }
 }
