@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodeCoin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<div th:replace="navbar.html :: navbar"></div>
+<div class="header">
+    <h1>Currencies</h1>
+</div>
+<div class="filter">
+    <label for="order">Order by:</label>
+    <select name="order" id="order">
+        <option value="relevant">Relevant</option>
+        <option value="name">Name</option>
+        <option value="last-24-hour">Best in last 24 hours</option>
+    </select>
+
+    <label for="currency">Currency:</label>
+    <select name="currency" id="currency">
+        <option value="USD">usd</option>
+        <option value="EUR">eur</option>
+        <option value="HUF">huf</option>
+    </select>
+</div>
+    <div class="currencies">
+        <div th:each="currency: ${allCurrencies}" class="currency">
+            <a th:href="@{'/coins/' + ${currency.id}}"><p class="name" th:text="${currency.name}"></p></a>
+            <p class="symbol" th:text="${currency.symbol}"></p>
+            <img class="currency-image" th:src="${currency.image}">
+            <p class="amount" th:text="${currency.currentPrice}"></p>
+            <p class="price-change-percentage-24h" th:text="${currency.priceChangePercentage24h}"></p>
+        </div>
+    </div>
+</body>
+</html>
