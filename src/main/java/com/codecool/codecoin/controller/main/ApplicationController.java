@@ -68,6 +68,11 @@ public class ApplicationController {
         }
     }
 
+    /**
+     * Display portfolio page with purchased cryptocurrencies.
+     * @param model the object used to store data for the template
+     * @return portfolio page
+     */
     @GetMapping("/portfolio")
     public String portfolio(Model model) {
         Portfolio portfolio = apiController.getPortfolio();
