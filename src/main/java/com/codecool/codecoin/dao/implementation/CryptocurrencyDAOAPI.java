@@ -11,6 +11,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Implements Cryptocurrency data access methods.
+ */
 @Service
 public class CryptocurrencyDAOAPI implements CryptocurrencyDAO {
     private WebClient webClient;
