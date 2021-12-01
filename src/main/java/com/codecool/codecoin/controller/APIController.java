@@ -85,6 +85,10 @@ public class APIController {
         }
     }
 
+    /**
+     * Get the {@link Portfolio} instance.
+     * @return Portfolio
+     */
     @GetMapping("/portfolio")
     public Portfolio getPortfolio() {
         return portfolio;
