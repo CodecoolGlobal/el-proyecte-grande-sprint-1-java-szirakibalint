@@ -106,6 +106,12 @@ public class ApplicationController {
         }
     }
 
+    /**
+     * Display coin page with sell option.
+     * @param coinId an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
+     * @param model the object used to store data for the template
+     * @return coin sell page template if coin exists, else error page template
+     */
     @GetMapping("/coins/{coinId}/sell")
     public String sellCoin(@PathVariable String coinId, Model model) {
         Portfolio portfolio = apiController.getPortfolio();
