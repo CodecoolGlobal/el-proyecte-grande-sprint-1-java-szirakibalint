@@ -27,6 +27,10 @@ public class CryptocurrencyDAOAPI implements CryptocurrencyDAO {
         this.webClient = webClient;
     }
 
+    /**
+     * Fetches all Cryptocurrencies from the third party API.
+     * @return Set of all fetched Cryptocurrencies.
+     */
     @Override
     public Set<Cryptocurrency> getAll() {
         return webClient.get()
