@@ -38,6 +38,12 @@ public class Cryptocurrency {
     private LocalDateTime lastUpdated;
     private BigDecimal amount;
 
+    /**
+     * <pre>
+     * Instances are compared based on their marketCapRank
+     * which is a unique integer.
+     * </pre>
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
