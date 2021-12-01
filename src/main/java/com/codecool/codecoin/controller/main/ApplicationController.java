@@ -16,6 +16,10 @@ public class ApplicationController {
 
     private APIController apiController;
 
+    /**
+     * Creates an {@link ApplicationController} instance.
+     * @param apiController used to access the {@link Cryptocurrency} data
+     */
     @Autowired
     public ApplicationController(APIController apiController) {
         this.apiController = apiController;
