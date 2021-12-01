@@ -39,6 +39,12 @@ public class Portfolio {
         return currencies;
     }
 
+    /**
+     * Buy {@link Cryptocurrency} in the specified amount.
+     * @param cryptoCurrency the type of {@link Cryptocurrency}
+     * @param amount the decimal amount of {@link Cryptocurrency}
+     * @return the outcome of the transaction as a boolean value
+     */
     public boolean buyCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
         BigDecimal cost = cryptoCurrency.getCurrentPrice().multiply(amount);
         if (currencies.get(CurrencyType.USD).compareTo(cost) > -1) {
