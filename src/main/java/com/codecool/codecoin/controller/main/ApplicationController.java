@@ -87,6 +87,12 @@ public class ApplicationController {
         return "portfolio";
     }
 
+    /**
+     * Display coin page with buy option.
+     * @param coinId an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
+     * @param model the object used to store data for the template
+     * @return coin buy page template if coin exists, else error page template
+     */
     @GetMapping("/coins/{coinId}/buy")
     public String buyCoin(@PathVariable String coinId, Model model) {
         Portfolio portfolio = apiController.getPortfolio();
