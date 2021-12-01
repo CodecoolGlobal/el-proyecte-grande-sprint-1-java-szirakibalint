@@ -6,6 +6,7 @@ import com.codecool.codecoin.model.Portfolio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @RestController
@@ -31,7 +32,7 @@ public class APIController {
     }
 
     @PostMapping("/coins/{id}")
-    public String buyCurrency(@PathVariable String id, @RequestParam int amount) {
+    public String buyCurrency(@PathVariable String id, @RequestParam BigDecimal amount) {
         Cryptocurrency cryptocurrency = getCurrencyById(id);
         if (cryptocurrency == null) {
             return "Invalid id";
@@ -44,7 +45,7 @@ public class APIController {
     }
 
     @PutMapping("/coins/{id}")
-    public String sellCurrency(@PathVariable String id, @RequestParam int amount) {
+    public String sellCurrency(@PathVariable String id, @RequestParam BigDecimal amount) {
         Cryptocurrency cryptocurrency = getCurrencyById(id);
         if (cryptocurrency == null) {
             return "Invalid id";
