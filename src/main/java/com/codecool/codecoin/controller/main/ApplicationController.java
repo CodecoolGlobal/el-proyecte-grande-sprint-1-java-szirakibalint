@@ -34,6 +34,11 @@ public class ApplicationController {
         return "index";
     }
 
+    /**
+     * Display list of coins when visiting "/coins"
+     * @param model the object used to store data for the template
+     * @return coins page template
+     */
     @GetMapping("/coins")
     public String coins(Model model) {
         model.addAttribute("allCurrencies", apiController.getAll());
