@@ -7,6 +7,15 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * <pre>
+ * Stores relevant information about a cryptocurrency.
+ * Fields are populated with data fetched from a third party API.
+ * JsonProperty annotations are used to make field names
+ * match the incoming data from the API.
+ * Contains getters to return data from fields for JSON conversion.
+ * </pre>
+ */
 @JsonSerialize
 public class Cryptocurrency {
     private String id;
@@ -29,6 +38,12 @@ public class Cryptocurrency {
     private LocalDateTime lastUpdated;
     private BigDecimal amount;
 
+    /**
+     * <pre>
+     * Instances are compared based on their marketCapRank
+     * which is a unique integer.
+     * </pre>
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

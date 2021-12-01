@@ -23,14 +23,28 @@ public class Portfolio {
         return instance;
     }
 
+    /**
+     * Get {@link Cryptocurrency} balances from Portfolio.
+     * @return cryptocurrencies and amounts as key-value pairs in a Map
+     */
     public Map<Cryptocurrency, BigDecimal> getCryptoCurrencies() {
         return cryptoCurrencies;
     }
 
+    /**
+     * Get currency ({@link CurrencyType}) balances from Portfolio.
+     * @return currency types and amounts as key-value pairs in a Map.
+     */
     public Map<CurrencyType, BigDecimal> getCurrencies() {
         return currencies;
     }
 
+    /**
+     * Buy {@link Cryptocurrency} in the specified amount.
+     * @param cryptoCurrency the type of {@link Cryptocurrency}
+     * @param amount the decimal amount of {@link Cryptocurrency}
+     * @return the outcome of the transaction as a boolean value
+     */
     public boolean buyCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
         BigDecimal cost = cryptoCurrency.getCurrentPrice().multiply(amount);
         if (currencies.get(CurrencyType.USD).compareTo(cost) > -1) {
@@ -46,6 +60,12 @@ public class Portfolio {
         }
     }
 
+    /**
+     * Sell {@link Cryptocurrency} in the specified amount.
+     * @param cryptoCurrency the type of {@link Cryptocurrency}
+     * @param amount the decimal amount of {@link Cryptocurrency}
+     * @return the outcome of the transaction as a boolean value
+     */
     public boolean sellCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
         BigDecimal value = cryptoCurrency.getCurrentPrice().multiply(amount);
         if (cryptoCurrencies.containsKey(cryptoCurrency) && cryptoCurrencies.get(cryptoCurrency).compareTo(amount) > -1) {

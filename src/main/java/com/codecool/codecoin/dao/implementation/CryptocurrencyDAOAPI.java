@@ -11,15 +11,26 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Implements Cryptocurrency data access methods.
+ */
 @Service
 public class CryptocurrencyDAOAPI implements CryptocurrencyDAO {
     private WebClient webClient;
 
+    /**
+     * Sets the webclient for the DAO.
+     * @param webClient used to fetch data from the third party API.
+     */
     @Autowired
     private void setWebClient(WebClient webClient) {
         this.webClient = webClient;
     }
 
+    /**
+     * Fetches all Cryptocurrencies from the third party API.
+     * @return Set of all fetched Cryptocurrencies.
+     */
     @Override
     public Set<Cryptocurrency> getAll() {
         return webClient.get()
@@ -30,6 +41,11 @@ public class CryptocurrencyDAOAPI implements CryptocurrencyDAO {
                 .block();
     }
 
+    /**
+     * Fetches a Cryptocurrency from the third party API by a given id.
+     * @param id an identifier string for a Cryptocurrency (e.g. "bitcoin")
+     * @return Cryptocurrency object if a match is found, else null.
+     */
     @Override
     public Cryptocurrency getCurrencyById(String id) {
         List<Cryptocurrency> data = webClient.get()
