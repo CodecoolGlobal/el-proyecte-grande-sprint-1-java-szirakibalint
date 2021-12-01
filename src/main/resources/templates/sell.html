@@ -15,7 +15,7 @@
 </div>
 <div class="subheader">
     <h3 th:text="${cryptocurrency.name} + ' balance: ' + ${amount} + ' ' + ${cryptocurrency.symbol.toUpperCase()}"></h3>
-    <h3 th:text="'Balance: ' + ${balance}"></h3>
+    <h3 th:text="${cryptocurrency.name} + ' price: ' + ${cryptocurrency.currentPrice}"></h3>
 </div>
 <div class="transaction-form">
     <label for="amount">How much do you want to trade?</label>
