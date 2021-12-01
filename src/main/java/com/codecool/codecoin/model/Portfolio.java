@@ -23,6 +23,10 @@ public class Portfolio {
         return instance;
     }
 
+    /**
+     * Get {@link Cryptocurrency} balances from Portfolio.
+     * @return cryptocurrencies and amounts as key-value pairs in a Map
+     */
     public Map<Cryptocurrency, BigDecimal> getCryptoCurrencies() {
         return cryptoCurrencies;
     }
