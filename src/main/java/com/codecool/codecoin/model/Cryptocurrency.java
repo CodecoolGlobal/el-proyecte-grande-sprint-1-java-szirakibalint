@@ -7,6 +7,15 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+/**
+ * <pre>
+ * Stores relevant information about a cryptocurrency.
+ * Fields are populated with data fetched from a third party API.
+ * JsonProperty annotations are used to make field names
+ * match the incoming data from the API.
+ * Contains getters to return data from fields for JSON conversion.
+ * </pre>
+ */
 @JsonSerialize
 public class Cryptocurrency {
     private String id;
