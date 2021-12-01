@@ -14,8 +14,8 @@
     <h1 th:text="${cryptocurrency.name}"></h1>
 </div>
 <div class="action">
-    <a th:href="@{'/coins/' + ${currency.id} + '/buy'}"><button id="buy" class="button">Buy</button></a>
-    <a th:href="@{'/coins/' + ${currency.id} + '/sell'}"><button id="sell" class="button">Sell</button></a>
+    <a th:href="@{'/coins/' + ${cryptocurrency.id} + '/buy'}"><button id="buy" class="button">Buy</button></a>
+    <a th:href="@{'/coins/' + ${cryptocurrency.id} + '/sell'}"><button id="sell" class="button">Sell</button></a>
 </div>
 <div class="content">
     <div class="details">
