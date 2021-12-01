@@ -18,6 +18,10 @@ import java.util.Set;
 public class CryptocurrencyDAOAPI implements CryptocurrencyDAO {
     private WebClient webClient;
 
+    /**
+     * Sets the webclient for the DAO.
+     * @param webClient used to fetch data from the third party API.
+     */
     @Autowired
     private void setWebClient(WebClient webClient) {
         this.webClient = webClient;
