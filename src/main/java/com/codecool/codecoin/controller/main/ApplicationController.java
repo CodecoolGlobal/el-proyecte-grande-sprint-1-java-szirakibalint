@@ -25,6 +25,10 @@ public class ApplicationController {
         this.apiController = apiController;
     }
 
+    /**
+     * Display index page when visiting "/"
+     * @return index page template
+     */
     @GetMapping("/")
     public String index() {
         return "index";
