@@ -60,6 +60,12 @@ public class Portfolio {
         }
     }
 
+    /**
+     * Sell {@link Cryptocurrency} in the specified amount.
+     * @param cryptoCurrency the type of {@link Cryptocurrency}
+     * @param amount the decimal amount of {@link Cryptocurrency}
+     * @return the outcome of the transaction as a boolean value
+     */
     public boolean sellCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
         BigDecimal value = cryptoCurrency.getCurrentPrice().multiply(amount);
         if (cryptoCurrencies.containsKey(cryptoCurrency) && cryptoCurrencies.get(cryptoCurrency).compareTo(amount) > -1) {
