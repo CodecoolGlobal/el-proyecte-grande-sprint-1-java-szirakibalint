@@ -41,6 +41,11 @@ public class CryptocurrencyDAOAPI implements CryptocurrencyDAO {
                 .block();
     }
 
+    /**
+     * Fetches a Cryptocurrency from the third party API by a given id.
+     * @param id an identifier string for a Cryptocurrency (e.g. "bitcoin")
+     * @return Cryptocurrency object if a match is found, else null.
+     */
     @Override
     public Cryptocurrency getCurrencyById(String id) {
         List<Cryptocurrency> data = webClient.get()
