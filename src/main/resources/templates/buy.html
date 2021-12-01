@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script defer rel="script" type="application/javascript" th:src="@{/js/buyCrypto.js}"></script>
 </head>
 <body>
 <div th:replace="navbar.html :: navbar"></div>
@@ -15,12 +16,13 @@
 </div>
 <div class="subheader">
     <h3 th:text="'Balance: ' + ${balance} + ' USD'"></h3>
-    <h3 th:text="${cryptocurrency.name} + ' price: ' + ${cryptocurrency.currentPrice}"></h3>
+    <h3 th:text="${cryptocurrency.name} + ' balance: ' + ${amount} + ' ' + ${cryptocurrency.symbol.toUpperCase()}"></h3>
+    <h3 th:text="'1 ' + ${cryptocurrency.symbol.toUpperCase()} + ' = ' + ${cryptocurrency.currentPrice} + ' USD'"></h3>
 </div>
-<div class="transaction-form">
-    <label for="amount">How much do you want to trade?</label>
-    <input id="amount" type="text" name="amount">
-    <button id="buy" class="button">Buy</button>
-</div>
+<form class="transaction-form" th:action="@{'/coins/' + ${cryptocurrency.id} + '/buy'}">
+    <label for="amount-input" th:text="'How much ' + ${cryptocurrency.name} + ' you want to buy?'"></label>
+    <input id="amount-input" type="text" name="amount">
+    <button id="buy-button" class="button" type="submit">Buy</button>
+</form>
 </body>
 </html>

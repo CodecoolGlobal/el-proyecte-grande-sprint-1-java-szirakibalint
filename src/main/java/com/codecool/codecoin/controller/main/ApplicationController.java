@@ -97,11 +97,13 @@ public class ApplicationController {
     public String buyCoin(@PathVariable String coinId, Model model) {
         Portfolio portfolio = apiController.getPortfolio();
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
+        Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         if (cryptocurrency == null) {
             return "error";
         } else {
             model.addAttribute("balance", portfolio.getCurrencies().get(CurrencyType.USD));
             model.addAttribute("cryptocurrency", cryptocurrency);
+            model.addAttribute("amount", cryptocurrencies.getOrDefault(cryptocurrency, BigDecimal.ZERO));
             return "buy";
         }
     }
