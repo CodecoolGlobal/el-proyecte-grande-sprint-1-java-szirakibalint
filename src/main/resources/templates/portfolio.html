@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" th:href="@{css/main.css}">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <script defer rel="script" type="application/javascript" th:src="@{/js/card.js}"></script>
 </head>
 <body>
 <div th:replace="navbar.html :: navbar"></div>
@@ -19,9 +20,9 @@
 <!--    <p class="off" id="my-trackings">My trackings</p>-->
 <!--</div>-->
 <div class="portfolio-content">
-<div th:each="entry, value : ${cryptocurrencies}">
-    <p th:text="${entry.key.name}"></p>
-    <p th:text="${entry.key.symbol}"></p>
+<div th:each="entry, value : ${cryptocurrencies}" class="portfolio-card">
+    <p th:text="${entry.key.name}"></p><a th:href="@{'/coins/' + ${entry.key.id}}"></a>
+    <p th:text="${entry.key.symbol.toUpperCase()}"></p>
     <img th:src="${entry.key.image}">
     <p th:text="${entry.value}"></p>
 </div>
