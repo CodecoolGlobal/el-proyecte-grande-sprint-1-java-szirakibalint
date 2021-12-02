@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
     <script defer rel="script" type="application/javascript" th:src="@{/js/buyCrypto.js}"></script>
 </head>
 <body>
@@ -19,7 +20,7 @@
     <h3 th:text="${cryptocurrency.name} + ' balance: ' + ${amount} + ' ' + ${cryptocurrency.symbol.toUpperCase()}"></h3>
     <h3 th:text="'1 ' + ${cryptocurrency.symbol.toUpperCase()} + ' = ' + ${cryptocurrency.currentPrice} + ' USD'"></h3>
 </div>
-<div>
+<div class="transaction">
     <label for="amount-input" th:text="'How much ' + ${cryptocurrency.name} + ' you want to buy?'"></label>
     <input id="amount-input" type="text" name="amount">
 <form class="transaction-form" th:action="@{'/coins/' + ${cryptocurrency.id} + '/buy'}">
