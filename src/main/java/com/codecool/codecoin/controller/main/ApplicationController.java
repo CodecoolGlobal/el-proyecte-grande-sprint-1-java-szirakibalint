@@ -22,6 +22,7 @@ public class ApplicationController {
 
     private final APIController apiController;
     private final Calculator calculator;
+    private static final String INVALID_ID_ERROR_MESSAGE = "No cryptocurrency with the given id exists. If you see this message after clicking on one of the cryptocurrencies on the main page, please let us know!";
 
     /**
      * Creates an {@link ApplicationController} instance.
@@ -63,6 +64,7 @@ public class ApplicationController {
     public String coinDetails(@PathVariable String coinId, Model model) {
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
         if (cryptocurrency == null) {
+            model.addAttribute("message", INVALID_ID_ERROR_MESSAGE);
             return "error";
         } else {
             model.addAttribute("cryptocurrency", cryptocurrency);
@@ -99,6 +101,7 @@ public class ApplicationController {
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         if (cryptocurrency == null) {
+            model.addAttribute("message", INVALID_ID_ERROR_MESSAGE);
             return "error";
         } else {
             model.addAttribute("balance", portfolio.getCurrencies().get(CurrencyType.USD));
@@ -121,6 +124,7 @@ public class ApplicationController {
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
         if (cryptocurrency == null) {
+            model.addAttribute("message", INVALID_ID_ERROR_MESSAGE);
             return "error";
         } else {
             model.addAttribute("balance", currencies.get(CurrencyType.USD));
