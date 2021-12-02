@@ -57,15 +57,18 @@ public class APIController {
     @PostMapping("/coins/{id}")
     public String buyCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
         BigDecimal amount = data.get("amount");
-        Cryptocurrency cryptocurrency = getCurrencyById(id);
-        if (cryptocurrency == null) {
-            return "Invalid id";
+        if (amount != null && amount.compareTo(BigDecimal.ZERO) > 0) {
+            Cryptocurrency cryptocurrency = getCurrencyById(id);
+            if (cryptocurrency == null) {
+                return "Invalid id";
+            }
+            if (portfolio.buyCrypto(cryptocurrency, amount)) {
+                return "Bought " + amount + " of " + cryptocurrency.getName();
+            } else {
+                return "Transaction to buy currency failed";
+            }
         }
-        if (portfolio.buyCrypto(cryptocurrency, amount)) {
-            return "Bought " + amount + " of " + cryptocurrency.getName();
-        } else {
-            return "Transaction to buy currency failed";
-        }
+        return "Zero or negative amount of crypto";
     }
 
     /**
@@ -77,15 +80,18 @@ public class APIController {
     @PutMapping("/coins/{id}")
     public String sellCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
         BigDecimal amount = data.get("amount");
-        Cryptocurrency cryptocurrency = getCurrencyById(id);
-        if (cryptocurrency == null) {
-            return "Invalid id";
+        if (amount != null && amount.compareTo(BigDecimal.ZERO) > 0) {
+            Cryptocurrency cryptocurrency = getCurrencyById(id);
+            if (cryptocurrency == null) {
+                return "Invalid id";
+            }
+            if (portfolio.sellCrypto(cryptocurrency, amount)) {
+                return "Sold " + amount + " of " + cryptocurrency.getName();
+            } else {
+                return "Not enough " + cryptocurrency.getName();
+            }
         }
-        if (portfolio.sellCrypto(cryptocurrency, amount)) {
-            return "Sold " + amount + " of " + cryptocurrency.getName();
-        } else {
-            return "Not enough " + cryptocurrency.getName();
-        }
+        return "Zero or negative amount of crypto";
     }
 
     /**
