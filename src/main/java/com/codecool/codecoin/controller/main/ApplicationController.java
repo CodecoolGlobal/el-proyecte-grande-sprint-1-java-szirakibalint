@@ -82,7 +82,7 @@ public class ApplicationController {
         Portfolio portfolio = apiController.getPortfolio();
         Map<CurrencyType, BigDecimal> currencies = portfolio.getCurrencies();
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
-        BigDecimal totalBalance = calculator.calculateTotalBalance(portfolio);
+        BigDecimal totalBalance = calculator.calculateTotalBalance(portfolio, apiController);
         model.addAttribute("cryptocurrencies", cryptocurrencies);
         model.addAttribute("currencies", currencies);
         model.addAttribute("totalBalance", totalBalance);
