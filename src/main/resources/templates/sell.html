@@ -19,10 +19,12 @@
     <h3 th:text="${cryptocurrency.name} + ' balance: ' + ${amount} + ' ' + ${cryptocurrency.symbol.toUpperCase()}"></h3>
     <h3 th:text="'1 ' + ${cryptocurrency.symbol.toUpperCase()} + ' = ' + ${cryptocurrency.currentPrice} + ' USD'"></h3>
 </div>
-<form class="transaction-form" th:action="@{'/coins/' + ${cryptocurrency.id} + '/sell'}">
+<div>
     <label for="amount-input" th:text="'How much ' + ${cryptocurrency.name} + ' you want to sell?'"></label>
     <input id="amount-input" type="text" name="amount">
+<form class="transaction-form" th:action="@{'/coins/' + ${cryptocurrency.id} + '/sell'}">
     <button id="sell-button" class="button">Sell</button>
 </form>
+</div>
 </body>
 </html>
