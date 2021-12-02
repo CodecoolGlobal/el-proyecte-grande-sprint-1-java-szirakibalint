@@ -6,27 +6,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
 <div th:replace="navbar.html :: navbar"></div>
 <div class="header">
     <h1>Currencies</h1>
 </div>
-<div class="filter">
-    <label for="order">Order by:</label>
-    <select name="order" id="order">
-        <option value="relevant">Relevant</option>
-        <option value="name">Name</option>
-        <option value="last-24-hour">Best in last 24 hours</option>
-    </select>
+<!--<div class="filter">-->
+<!--    <label for="order">Order by:</label>-->
+<!--    <select name="order" id="order">-->
+<!--        <option value="relevant">Relevant</option>-->
+<!--        <option value="name">Name</option>-->
+<!--        <option value="last-24-hour">Best in last 24 hours</option>-->
+<!--    </select>-->
 
-    <label for="currency">Currency:</label>
-    <select name="currency" id="currency">
-        <option value="USD">usd</option>
-        <option value="EUR">eur</option>
-        <option value="HUF">huf</option>
-    </select>
-</div>
+<!--    <label for="currency">Currency:</label>-->
+<!--    <select name="currency" id="currency">-->
+<!--        <option value="USD">usd</option>-->
+<!--        <option value="EUR">eur</option>-->
+<!--        <option value="HUF">huf</option>-->
+<!--    </select>-->
+<!--</div>-->
     <div class="currencies">
         <div th:each="currency: ${allCurrencies}" class="currency">
             <a th:href="@{'/coins/' + ${currency.id}}"><p class="name" th:text="${currency.name}"></p></a>
