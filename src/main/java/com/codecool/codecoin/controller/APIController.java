@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -54,16 +55,20 @@ public class APIController {
      * @return the outcome of the transaction as a string
      */
     @PostMapping("/coins/{id}")
-    public String buyCurrency(@PathVariable String id, @RequestParam BigDecimal amount) {
-        Cryptocurrency cryptocurrency = getCurrencyById(id);
-        if (cryptocurrency == null) {
-            return "Invalid id";
+    public String buyCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
+        BigDecimal amount = data.get("amount");
+        if (amount != null && amount.compareTo(BigDecimal.ZERO) > 0) {
+            Cryptocurrency cryptocurrency = getCurrencyById(id);
+            if (cryptocurrency == null) {
+                return "Invalid id";
+            }
+            if (portfolio.buyCrypto(cryptocurrency, amount)) {
+                return "Bought " + amount + " of " + cryptocurrency.getName();
+            } else {
+                return "Transaction to buy currency failed";
+            }
         }
-        if (portfolio.buyCrypto(cryptocurrency, amount)) {
-            return "Bought " + amount + " of " + cryptocurrency.getName();
-        } else {
-            return "Transaction to buy currency failed";
-        }
+        return "Zero or negative amount of crypto";
     }
 
     /**
@@ -73,16 +78,20 @@ public class APIController {
      * @return the outcome of the transaction as a string
      */
     @PutMapping("/coins/{id}")
-    public String sellCurrency(@PathVariable String id, @RequestParam BigDecimal amount) {
-        Cryptocurrency cryptocurrency = getCurrencyById(id);
-        if (cryptocurrency == null) {
-            return "Invalid id";
+    public String sellCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
+        BigDecimal amount = data.get("amount");
+        if (amount != null && amount.compareTo(BigDecimal.ZERO) > 0) {
+            Cryptocurrency cryptocurrency = getCurrencyById(id);
+            if (cryptocurrency == null) {
+                return "Invalid id";
+            }
+            if (portfolio.sellCrypto(cryptocurrency, amount)) {
+                return "Sold " + amount + " of " + cryptocurrency.getName();
+            } else {
+                return "Not enough " + cryptocurrency.getName();
+            }
         }
-        if (portfolio.sellCrypto(cryptocurrency, amount)) {
-            return "Sold " + amount + " of " + cryptocurrency.getName();
-        } else {
-            return "Not enough " + cryptocurrency.getName();
-        }
+        return "Zero or negative amount of crypto";
     }
 
     /**
