@@ -79,7 +79,7 @@ public class APIController {
      * @return Portfolio
      */
     @GetMapping("/portfolio")
-    public Portfolio getUserService() {
+    public Portfolio getPortfolio() {
         return userService.getPortfolio();
     }
 }

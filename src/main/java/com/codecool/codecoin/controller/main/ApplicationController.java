@@ -1,7 +1,6 @@
 package com.codecool.codecoin.controller.main;
 
 import com.codecool.codecoin.controller.APIController;
-import com.codecool.codecoin.service.Calculator;
 import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.CurrencyType;
 import com.codecool.codecoin.model.Portfolio;
@@ -80,7 +79,7 @@ public class ApplicationController {
      */
     @GetMapping("/portfolio")
     public String portfolio(Model model) {
-        Portfolio portfolio = apiController.getUserService();
+        Portfolio portfolio = apiController.getPortfolio();
         Map<CurrencyType, BigDecimal> currencies = portfolio.getCurrencies();
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         BigDecimal totalBalance = userService.getTotalBalance();
@@ -98,7 +97,7 @@ public class ApplicationController {
      */
     @GetMapping("/coins/{coinId}/buy")
     public String buyCoin(@PathVariable String coinId, Model model) {
-        Portfolio portfolio = apiController.getUserService();
+        Portfolio portfolio = apiController.getPortfolio();
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         if (cryptocurrency == null) {
@@ -120,7 +119,7 @@ public class ApplicationController {
      */
     @GetMapping("/coins/{coinId}/sell")
     public String sellCoin(@PathVariable String coinId, Model model) {
-        Portfolio portfolio = apiController.getUserService();
+        Portfolio portfolio = apiController.getPortfolio();
         Map<CurrencyType, BigDecimal> currencies = portfolio.getCurrencies();
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
