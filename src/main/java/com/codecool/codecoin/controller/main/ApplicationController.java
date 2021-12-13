@@ -1,7 +1,7 @@
 package com.codecool.codecoin.controller.main;
 
 import com.codecool.codecoin.controller.APIController;
-import com.codecool.codecoin.logic.Calculator;
+import com.codecool.codecoin.service.Calculator;
 import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.CurrencyType;
 import com.codecool.codecoin.model.Portfolio;

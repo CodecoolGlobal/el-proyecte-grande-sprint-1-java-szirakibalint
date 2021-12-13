@@ -1,10 +1,9 @@
-package com.codecool.codecoin.logic;
+package com.codecool.codecoin.service;
 
 import com.codecool.codecoin.controller.APIController;
 import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.CurrencyType;
 import com.codecool.codecoin.model.Portfolio;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.Map;
