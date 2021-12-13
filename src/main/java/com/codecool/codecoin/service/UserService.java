@@ -11,10 +11,12 @@ import java.math.BigDecimal;
 public class UserService {
 
     private final UserDAO userDAO;
+    private final Calculator calculator;
 
     @Autowired
-    public UserService(UserDAO userDAO) {
+    public UserService(UserDAO userDAO, Calculator calculator) {
         this.userDAO = userDAO;
+        this.calculator = calculator;
     }
 
     public Portfolio getPortfolio() {
@@ -27,5 +29,9 @@ public class UserService {
 
     public String sellCryptocurrency(String id, BigDecimal amount) {
         return userDAO.sellCrypto(id, amount);
+    }
+
+    public BigDecimal getTotalBalance() {
+        return calculator.calculateTotalBalance(userDAO.getPortfolio());
     }
 }
