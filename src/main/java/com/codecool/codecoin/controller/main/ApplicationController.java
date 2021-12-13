@@ -79,7 +79,7 @@ public class ApplicationController {
      */
     @GetMapping("/portfolio")
     public String portfolio(Model model) {
-        Portfolio portfolio = apiController.getPortfolio();
+        Portfolio portfolio = apiController.getUserService();
         Map<CurrencyType, BigDecimal> currencies = portfolio.getCurrencies();
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         BigDecimal totalBalance = calculator.calculateTotalBalance(portfolio, apiController);
@@ -97,7 +97,7 @@ public class ApplicationController {
      */
     @GetMapping("/coins/{coinId}/buy")
     public String buyCoin(@PathVariable String coinId, Model model) {
-        Portfolio portfolio = apiController.getPortfolio();
+        Portfolio portfolio = apiController.getUserService();
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         if (cryptocurrency == null) {
@@ -119,7 +119,7 @@ public class ApplicationController {
      */
     @GetMapping("/coins/{coinId}/sell")
     public String sellCoin(@PathVariable String coinId, Model model) {
-        Portfolio portfolio = apiController.getPortfolio();
+        Portfolio portfolio = apiController.getUserService();
         Map<CurrencyType, BigDecimal> currencies = portfolio.getCurrencies();
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         Cryptocurrency cryptocurrency = apiController.getCurrencyById(coinId);
