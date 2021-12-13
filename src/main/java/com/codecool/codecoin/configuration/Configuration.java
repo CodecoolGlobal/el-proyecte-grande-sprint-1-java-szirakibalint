@@ -19,9 +19,4 @@ public class Configuration {
     public Portfolio getPortfolio() {
         return Portfolio.getInstance();
     }
-
-    @Bean
-    public Calculator getCalculator() {
-        return new Calculator();
-    }
 }
