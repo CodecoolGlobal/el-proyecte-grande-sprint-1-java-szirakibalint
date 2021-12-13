@@ -53,7 +53,7 @@ public class APIController {
     /**
      * Buy a {@link Cryptocurrency} using the {@link Portfolio}.
      * @param id an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
-     * @param amount the decimal amount of {@link Cryptocurrency} to purchase
+     * @param data contains the decimal amount of {@link Cryptocurrency} to purchase
      * @return the outcome of the transaction as a string
      */
     @PostMapping("/coins/{id}")
@@ -65,7 +65,7 @@ public class APIController {
     /**
      * Sell a {@link Cryptocurrency} using the {@link Portfolio}.
      * @param id an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
-     * @param amount the decimal amount of {@link Cryptocurrency} to purchase
+     * @param data contains the decimal amount of {@link Cryptocurrency} to purchase
      * @return the outcome of the transaction as a string
      */
     @PutMapping("/coins/{id}")
