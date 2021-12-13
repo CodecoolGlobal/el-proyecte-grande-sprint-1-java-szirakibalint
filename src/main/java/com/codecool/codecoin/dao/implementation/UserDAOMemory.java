@@ -3,7 +3,9 @@ package com.codecool.codecoin.dao.implementation;
 import com.codecool.codecoin.dao.UserDAO;
 import com.codecool.codecoin.model.Portfolio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserDAOMemory implements UserDAO {
 
     private final Portfolio portfolio;
