@@ -15,6 +15,15 @@ function Coins() {
         const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd`)
         return await res.json()
     }
+    return (
+        <>
+            <div>{coins.map((coin) => (
+                <div>
+                    <p>{coin.name}</p>
+                </div>))}
+            </div>
+        </>
+    )
 }
 
 export default Coins;
