@@ -11,7 +11,6 @@ function Buy() {
             setCoin(coinFromAPI)
         }
         getCoin();
-        console.log(coin.name)
     }, [])
 
     const fetchCoin = async () => {
@@ -22,7 +21,7 @@ function Buy() {
             <> {coin.map((coin) => (
                 <>
                 <div className="header">
-                    <img src={coin.image}/>
+                    <img src={coin.image} alt="symbol"/>
                         <h1>{coin.name}</h1>
                 </div>
                 <div className="subheader">
