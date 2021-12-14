@@ -14,12 +14,11 @@ function Sell() {
     }, [])
 
     const fetchCoin = async () => {
-        const res = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${id}`)
+        const res = await fetch(`/api/coins/${id}`)
         return await res.json()
     }
     return (
-        <> {coin.map((coin) => (
-            <>
+        <>
                 <div className="header">
                     <img src={coin.image} alt="symbol"/>
                     <h1>{coin.name}</h1>
@@ -36,7 +35,6 @@ function Sell() {
                         <button id="sell-button" className="button" type="submit">Buy</button>
                     </form>
                 </div>
-            </>))}
         </>
     )
 }
