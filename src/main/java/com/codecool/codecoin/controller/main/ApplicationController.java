@@ -1,10 +1,10 @@
 package com.codecool.codecoin.controller.main;
 
 import com.codecool.codecoin.controller.APIController;
-import com.codecool.codecoin.logic.Calculator;
 import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.CurrencyType;
 import com.codecool.codecoin.model.Portfolio;
+import com.codecool.codecoin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ import java.util.Map;
 public class ApplicationController {
 
     private final APIController apiController;
-    private final Calculator calculator;
+    private final UserService userService;
     private static final String INVALID_ID_ERROR_MESSAGE = "No cryptocurrency with the given id exists. If you see this message after clicking on one of the cryptocurrencies on the main page, please let us know!";
 
     /**
@@ -29,9 +29,9 @@ public class ApplicationController {
      * @param apiController used to access the {@link Cryptocurrency} data
      */
     @Autowired
-    public ApplicationController(APIController apiController, Calculator calculator) {
+    public ApplicationController(APIController apiController, UserService userService) {
         this.apiController = apiController;
-        this.calculator = calculator;
+        this.userService = userService;
     }
 
     /**
@@ -82,7 +82,7 @@ public class ApplicationController {
         Portfolio portfolio = apiController.getPortfolio();
         Map<CurrencyType, BigDecimal> currencies = portfolio.getCurrencies();
         Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
-        BigDecimal totalBalance = calculator.calculateTotalBalance(portfolio, apiController);
+        BigDecimal totalBalance = userService.getTotalBalance();
         model.addAttribute("cryptocurrencies", cryptocurrencies);
         model.addAttribute("currencies", currencies);
         model.addAttribute("totalBalance", totalBalance);
