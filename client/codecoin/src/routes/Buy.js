@@ -17,7 +17,6 @@ function Buy() {
                 method: 'POST',
                 body: JSON.stringify({"amount": parseFloat(inputField.value)})
             })
-            console.log(inputField.value);
         })
     }, []);
     return (
