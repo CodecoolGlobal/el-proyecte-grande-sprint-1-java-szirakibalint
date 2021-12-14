@@ -25,10 +25,7 @@ function Portfolio() {
             <div className="portfolio-content">
                 {portfolio.cryptoCurrencies !== undefined && Object.keys(portfolio.cryptoCurrencies).map((key) => (
                 <div className="portfolio-card">
-                    <p><Link to={`/coins/${key.id}`}>{key.name}</Link></p>
-                    <p>{key.symbol}</p>
-                    <img src={key.image} alt="symbol"/>
-                        <p>portfolio.cryptoCurrencies.key</p>
+                    <p>{key} : {portfolio.cryptoCurrencies[key]}</p>
                 </div>))}
             </div>
         </>
