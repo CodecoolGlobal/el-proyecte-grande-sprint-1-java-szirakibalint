@@ -1,6 +1,8 @@
 package com.codecool.codecoin.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 
@@ -19,15 +21,16 @@ import java.util.Objects;
  */
 @Getter
 @JsonSerialize
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class Cryptocurrency {
     private String id;
     private String symbol;
     private String name;
     private String image;
-    @JsonProperty("market_cap_rank")
     private Integer marketCapRank;
-    @JsonProperty("current_price")
     private BigDecimal currentPrice;
+    private LocalDateTime lastUpdated;
+    private BigDecimal amount;
     @JsonProperty("price_change_24h")
     private BigDecimal priceChange24h;
     @JsonProperty("price_change_percentage_24h")
@@ -36,9 +39,6 @@ public class Cryptocurrency {
     private BigDecimal high24h;
     @JsonProperty("low_24h")
     private BigDecimal low24h;
-    @JsonProperty("last_updated")
-    private LocalDateTime lastUpdated;
-    private BigDecimal amount;
 
     /**
      * <pre>
