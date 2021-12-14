@@ -2,6 +2,7 @@ package com.codecool.codecoin.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.util.Objects;
  * Contains getters to return data from fields for JSON conversion.
  * </pre>
  */
+@Getter
 @JsonSerialize
 public class Cryptocurrency {
     private String id;
@@ -57,53 +59,6 @@ public class Cryptocurrency {
         return Objects.hash(marketCapRank);
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getSymbol() {
-        return symbol;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public Integer getMarketCapRank() {
-        return marketCapRank;
-    }
-
-    public BigDecimal getCurrentPrice() {
-        return currentPrice;
-    }
-
-    public BigDecimal getPriceChange24h() {
-        return priceChange24h;
-    }
-
-    public BigDecimal getPriceChangePercentage24h() {
-        return priceChangePercentage24h;
-    }
-
-    public BigDecimal getHigh24h() {
-        return high24h;
-    }
-
-    public BigDecimal getLow24h() {
-        return low24h;
-    }
-
-    public LocalDateTime getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
 
     @Override
     public String toString() {
