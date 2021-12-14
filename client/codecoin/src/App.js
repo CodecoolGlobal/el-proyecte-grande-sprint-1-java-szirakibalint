@@ -5,6 +5,7 @@ import LandingPage from "./routes/LandingPage";
 import Coins from "./routes/Coins";
 import Details from "./routes/Details";
 import Buy from "./routes/Buy";
+import Sell from "./routes/Sell";
 import Navbar from "./components/Navbar";
 import React from "react";
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/coins" exact element={<Coins/>}/>
           <Route path="/coins/:id" element={<Details/>}/>
           <Route path="/coins/:id/buy" element={<Buy/>}/>
+          <Route path="/coins/:id/sell" element={<Sell/>}/>
       </Routes>
       </div>
   );
