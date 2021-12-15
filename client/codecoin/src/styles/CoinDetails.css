@@ -1,1 +1,44 @@
 
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, 20rem);
+    margin-left: 2rem;
+}
+
+.header img {
+    width: 100px;
+    height: 100px;
+    margin-right: 1.5rem;
+}
+
+.details, .profile {
+    width: max-content;
+    height: max-content;
+}
+
+#details, #profile {
+    font-weight: bold;
+    font-size: xx-large;
+}
+
+.tag {
+    font-weight: bold;
+    font-size: large;
+    width: max-content;
+    color: gray;
+}
+
+.details .text, .profile .text{
+    font-size: 36px;
+}
+
+.action {
+    width: 22rem;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+}
+
+.details, .profile, .action {
+    margin-left: 4rem;
+}
