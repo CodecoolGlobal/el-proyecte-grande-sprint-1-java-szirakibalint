@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
 function Error(message) {
-    message = typeof message === "string" ? message : "Oops, something went wrong."
+    message = isNaN(message) ? "Oops, something went wrong." : message;
     return (
         <>
         <img src="https://i.postimg.cc/k5zT5dmN/logo-broken.png" width="800px" alt="logo"/>
