@@ -81,13 +81,9 @@ public class APIController {
      * @return Portfolio
      */
     @GetMapping("/portfolio")
-    public Portfolio getPortfolio() {
-        return userService.getPortfolio();
-    }
-
-    @GetMapping("/portfolio/total-balance")
-    public Map<String, BigDecimal> getTotalBalance() {
+    public Map<String, Object> getPortfolio() {
         return new HashMap<>(){{
+            put("portfolio", userService.getPortfolio());
             put("totalBalance", userService.getTotalBalance());
         }};
     }
