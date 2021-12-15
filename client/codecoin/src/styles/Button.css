@@ -12,3 +12,8 @@
     background-color: black;
     color: white;
 }
+
+.btn-outlined {
+    color: black;
+    background-color: transparent;
+}
