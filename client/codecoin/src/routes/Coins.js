@@ -8,7 +8,7 @@ function Coins() {
         <>
             <dic className="header"><h1>Currencies</h1></dic>
             <div className={"currencies"}>{coins.map((coin) => (
-                <Card coin={coin}></Card>
+                <Card coin={coin}/>
                 ))}
             </div>
         </>
