@@ -14,6 +14,7 @@ function PortfolioFetcher() {
         const res = await fetch(`/api/portfolio`)
         return await res.json()
     }
+    return portfolio;
 }
 
 export default PortfolioFetcher
