@@ -1,9 +1,6 @@
 import {useParams} from "react-router-dom";
 import CoinFetcher from "../components/CoinFetcher"
 import PortfolioFetcher from "../components/PortfolioFetcher";
-import Portfolio from "./Portfolio";
-import {useEffect, useState} from "react";
-import BalanceFetcher from "../components/BalanceFetcher";
 
 function Buy() {
 
