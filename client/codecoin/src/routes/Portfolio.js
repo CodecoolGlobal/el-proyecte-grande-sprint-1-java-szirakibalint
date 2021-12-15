@@ -1,27 +1,10 @@
 import {useEffect, useState} from "react";
+import PortfolioFetcher from "../components/PortfolioFetcher";
+import BalanceFetcher from "../components/BalanceFetcher";
 
 function Portfolio() {
-    const [portfolio, setPortfolio] = useState([])
-    const [totalBalance, setTotalBalance] = useState([])
-    useEffect(() => {
-        const getPortfolio = async () => {
-            const portfolioFromAPI = await fetchPortfolio()
-            const totalBalanceFromAPI = await getTotalBalance()
-            setPortfolio(portfolioFromAPI)
-            setTotalBalance(totalBalanceFromAPI.totalBalance)
-        }
-        getPortfolio();
-    }, [])
-
-    const fetchPortfolio = async () => {
-        const res = await fetch(`/api/portfolio`)
-        return await res.json()
-    }
-
-    const getTotalBalance = async () => {
-        const res = await fetch(`/api/portfolio/total-balance`)
-        return await res.json()
-    }
+    const portfolio = PortfolioFetcher;
+    const totalBalance = BalanceFetcher('').totalBalance;
 
     return (
         <>
