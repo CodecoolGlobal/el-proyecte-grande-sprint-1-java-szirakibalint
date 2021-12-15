@@ -17,3 +17,9 @@
 .navbar img {
     width: 175px;
 }
+
+@media screen and (max-width: 725px) {
+    #nav-options {
+        display: none;
+    }
+}
