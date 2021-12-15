@@ -3,24 +3,18 @@ import CoinFetcher from "../components/CoinFetcher";
 import Card from "../components/Card";
 
 function Portfolio() {
-    const fullPortfolio = PortfolioFetcher();
-    const portfolio = fullPortfolio.portfolio;
-    const totalBalance = fullPortfolio.totalBalance;
-
+    const {portfolio, totalBalance} = PortfolioFetcher();
     const coins = CoinFetcher('');
-
-    const portfolioHasCoins = (portfolio) && (portfolio.cryptoCurrencies);
     const portfolioCoins = [];
 
-    if (portfolioHasCoins) {
-        const currencies = portfolio.cryptoCurrencies;
-        const portfolioCoinIds = Object.keys(currencies);
-        for (let coin of coins) {
-            if (portfolioCoinIds.includes(coin.id)) {
-                portfolioCoins.push(
-                    {...coin,
-                    "amount": currencies[coin.id]
-                    });
+    if (portfolio) {
+        const {cryptoCurrencies} = portfolio;
+        if (cryptoCurrencies) {
+            const portfolioCoinIds = Object.keys(cryptoCurrencies);
+            for (let coin of coins) {
+                if (portfolioCoinIds.includes(coin.id)) {
+                    portfolioCoins.push({...coin, "amount": cryptoCurrencies[coin.id]});
+                }
             }
         }
     }
@@ -32,7 +26,7 @@ function Portfolio() {
                 <h1>{totalBalance} USD</h1>
             </div>
             <div className="currencies">
-                {portfolioHasCoins ? portfolioCoins.map((coin) => (<Card coin={coin}/>)) : null}
+                {portfolioCoins ? portfolioCoins.map((coin) => (<Card coin={coin}/>)) : null}
             </div>
         </>
     )
