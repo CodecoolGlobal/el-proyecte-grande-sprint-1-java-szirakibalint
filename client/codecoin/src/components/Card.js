@@ -9,7 +9,7 @@ function Card(props) {
             <Link to={"/coins/" + coin.id}><p className={"name"}>{coin.name}</p></Link>
             <p className={"symbol"}>{coin.symbol}</p>
             <img className={"currency-image"} src={coin.image} alt="currency"/>
-            <p className={"amount"}>{coin.current_price}</p>
+            <p className={"current-price"}>{coin.current_price}</p>
             <p className={"price-change-percentage-24h"}>{coin.price_change_percentage_24h}</p>
         </div>
     )
