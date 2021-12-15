@@ -12,18 +12,18 @@ function CoinFetcher(id) {
 
     const fetchCoin = async () => {
         let res
+        try {
         if (id === '') {
             res = await fetch(`/api/coins`)
         } else {
             res = await fetch(`/api/coins/${id}`)
         }
-        try {
             return await res.json()
         } catch (e) {
             if (id === '') {
-                return ["error", "Error: failed to fetch data from API endpoint /api/coins"];
+                return [{"error": "Error: failed to fetch data from API endpoint /api/coins"}];
             } else {
-                return ["error", `Error: failed to fetch coin data from API endpoint /api/coins/${id}`];
+                return [{"error": `Error: failed to fetch coin data from API endpoint /api/coins/${id}`}];
             }
         }
     }
