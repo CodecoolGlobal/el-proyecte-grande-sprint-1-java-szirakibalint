@@ -1,22 +1,21 @@
 import {useParams} from "react-router-dom";
 import CoinFetcher from "../components/CoinFetcher"
-import {useEffect} from "react";
 
 function Buy() {
 
     let { id } = useParams();
     const coin = CoinFetcher(id);
     async function handleBuy() {
-            const inputField = document.querySelector('#amount-input');
-            await fetch(`/api/coins/${id}`, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                method: 'POST',
-                body: JSON.stringify({"amount": parseFloat(inputField.value)})
-            })
-        }
+        const inputField = document.querySelector('#amount-input');
+        await fetch(`/api/coins/${id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({"amount": parseFloat(inputField.value)})
+        })
+    }
     return (
             <>
                 <div className="header">
