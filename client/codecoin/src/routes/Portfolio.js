@@ -1,9 +1,8 @@
-import {useEffect, useState} from "react";
 import PortfolioFetcher from "../components/PortfolioFetcher";
 import BalanceFetcher from "../components/BalanceFetcher";
 
 function Portfolio() {
-    const portfolio = PortfolioFetcher;
+    const portfolio = PortfolioFetcher();
     const totalBalance = BalanceFetcher('').totalBalance;
 
     return (
