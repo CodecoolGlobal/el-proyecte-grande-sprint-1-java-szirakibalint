@@ -6,3 +6,11 @@
     grid-template-columns: repeat(3, 23rem);
     grid-gap: 40px;
 }
+
+.header {
+    margin-left: 4rem;
+    margin-top: 2rem;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+}
