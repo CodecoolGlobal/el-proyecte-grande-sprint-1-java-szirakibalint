@@ -1,5 +1,6 @@
 import PortfolioFetcher from "../components/PortfolioFetcher";
 import CoinFetcher from "../components/CoinFetcher";
+import Card from "../components/Card";
 
 function Portfolio() {
     const fullPortfolio = PortfolioFetcher();
@@ -31,12 +32,7 @@ function Portfolio() {
                 <h1>{totalBalance} USD</h1>
             </div>
             <div className="portfolio-content">
-                {portfolioHasCoins ? portfolioCoins.map(coin => (
-                    <div className="portfolio-coin">
-                        <p>{coin.name}</p>
-                        <p>{coin.amount}</p>
-                        <p>{coin.current_price * coin.amount}</p>
-                    </div>)) : null}
+                {portfolioHasCoins ? portfolioCoins.map((coin) => (<Card coin={coin}/>)) : null}
             </div>
         </>
     )
