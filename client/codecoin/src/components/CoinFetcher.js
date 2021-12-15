@@ -17,7 +17,12 @@ function CoinFetcher(id) {
         } else {
             res = await fetch(`/api/coins/${id}`)
         }
-        return await res.json()
+        console.log(res);
+        try {
+            return await res.json()
+        } catch (e) {
+            return [];
+        }
     }
     return coin;
 }
