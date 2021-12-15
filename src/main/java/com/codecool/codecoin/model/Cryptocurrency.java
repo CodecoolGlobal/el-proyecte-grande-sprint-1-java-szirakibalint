@@ -62,6 +62,6 @@ public class Cryptocurrency {
 
     @Override
     public String toString() {
-        return name;
+        return id;
     }
 }
