@@ -5,8 +5,8 @@ import Error from "./Error";
 
 function Coins() {
     const coins = CoinFetcher('');
-    if (coins.length === 2 && coins[0] === "error") {
-        return Error(coins[1]);
+    if (coins.length === 1 && coins[0]["error"] !== undefined) {
+        return Error(coins[0]["error"]);
     }
     return (
         <>
