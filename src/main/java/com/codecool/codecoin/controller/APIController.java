@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -81,5 +83,12 @@ public class APIController {
     @GetMapping("/portfolio")
     public Portfolio getPortfolio() {
         return userService.getPortfolio();
+    }
+
+    @GetMapping("/portfolio/total-balance")
+    public Map<String, BigDecimal> getTotalBalance() {
+        return new HashMap<>(){{
+            put("totalBalance", userService.getTotalBalance());
+        }};
     }
 }
