@@ -8,8 +8,8 @@ import CoinDetailsModule from "../styles/CoinDetails.css"
 function Details() {
     let { id } = useParams();
     const coin = CoinFetcher(id);
-    if (coin.length === 1 && coin[0] === "error") {
-        return Error();
+    if (coin.length === 2 && coin[0] === "error") {
+        return Error(coin[1]);
     }
     return (
         <>
