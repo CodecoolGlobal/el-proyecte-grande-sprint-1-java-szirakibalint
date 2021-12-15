@@ -27,6 +27,17 @@ function Details() {
                     <p className="tag">Last update:</p>
                     <p className="text" >{coin.last_update}</p>
                 </div>
+                <div className="profile">
+                    <h3 id="profile">Profile</h3>
+                    <p className="tag">Price:</p>
+                    <p className="text">{coin.current_price}</p>
+                    <p className="tag">Low 24 hour:</p>
+                    <p className="text">{coin.low_24h}</p>
+                    <p className="tag">High 24 hour:</p>
+                    <p className="text">{coin.high_24h}</p>
+                    <p className="tag">Price percentage change in 24 hour</p>
+                    <p className="text">{coin.price_change_percentage_24h}</p>
+                </div>
             </div>
         </>
     )
