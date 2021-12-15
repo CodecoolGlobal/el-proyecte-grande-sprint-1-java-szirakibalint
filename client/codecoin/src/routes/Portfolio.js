@@ -1,12 +1,14 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 
 function Portfolio() {
     const [portfolio, setPortfolio] = useState([])
+    const [totalBalance, setTotalBalance] = useState([])
     useEffect(() => {
         const getPortfolio = async () => {
             const portfolioFromAPI = await fetchPortfolio()
+            const totalBalanceFromAPI = await getTotalBalance()
             setPortfolio(portfolioFromAPI)
+            setTotalBalance(totalBalanceFromAPI.totalBalance)
         }
         getPortfolio();
     }, [])
@@ -16,11 +18,16 @@ function Portfolio() {
         return await res.json()
     }
 
+    const getTotalBalance = async () => {
+        const res = await fetch(`/api/portfolio/total-balance`)
+        return await res.json()
+    }
+
     return (
         <>
             <div className="header">
                 <p className="label">Total balance:</p>
-                <h1>0 USD</h1>
+                <h1>{totalBalance} USD</h1>
             </div>
             <div className="portfolio-content">
                 {portfolio.cryptoCurrencies !== undefined && Object.keys(portfolio.cryptoCurrencies).map((key) => (
