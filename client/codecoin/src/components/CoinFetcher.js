@@ -20,7 +20,7 @@ function CoinFetcher(id) {
         try {
             return await res.json()
         } catch (e) {
-            return [];
+            return ["error"];
         }
     }
     return coin;
