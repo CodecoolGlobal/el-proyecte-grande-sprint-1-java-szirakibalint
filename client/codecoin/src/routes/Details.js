@@ -1,12 +1,16 @@
 import {useParams} from "react-router-dom";
 import CoinFetcher from "../components/CoinFetcher";
 import Button from "../components/Button";
+import Error from "./Error"
 import {Link} from "react-router-dom";
 import CoinDetailsModule from "../styles/CoinDetails.css"
 
 function Details() {
     let { id } = useParams();
     const coin = CoinFetcher(id);
+    if (coin.length === 0) {
+        return Error();
+    }
     return (
         <>
             <div className={"header"}>
