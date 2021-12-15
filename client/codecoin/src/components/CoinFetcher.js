@@ -20,7 +20,11 @@ function CoinFetcher(id) {
         try {
             return await res.json()
         } catch (e) {
-            return ["error"];
+            if (id === '') {
+                return ["error", "Error: failed to fetch data from API endpoint /api/coins"];
+            } else {
+                return ["error", `Error: failed to fetch coin data from API endpoint /api/coins/${id}`];
+            }
         }
     }
     return coin;
