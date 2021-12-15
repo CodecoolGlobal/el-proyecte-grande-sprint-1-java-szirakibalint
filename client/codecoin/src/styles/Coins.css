@@ -22,3 +22,16 @@
     }
 }
 
+@media screen and (max-width: 725px) {
+    .currencies {
+        grid-template-columns: repeat(1, 23rem);
+        grid-gap: 15px;
+    }
+    .header{
+        margin-left: 0;
+    }
+    .header * {
+        font-size: 36px;
+    }
+}
+
