@@ -31,7 +31,7 @@ function Portfolio() {
                 <p className="label">Total balance:</p>
                 <h1>{totalBalance} USD</h1>
             </div>
-            <div className="portfolio-content">
+            <div className="currencies">
                 {portfolioHasCoins ? portfolioCoins.map((coin) => (<Card coin={coin}/>)) : null}
             </div>
         </>
