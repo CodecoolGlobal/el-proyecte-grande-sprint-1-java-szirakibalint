@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
 function Error(message) {
-    message = message === undefined ? "Ooops something went wrong." : message;
+    message = typeof message === "string" ? message : "Oops, something went wrong."
     return (
         <>
         <img src="https://i.postimg.cc/k5zT5dmN/logo-broken.png" width="800px" alt="logo"/>
