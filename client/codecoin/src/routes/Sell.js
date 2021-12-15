@@ -1,24 +1,21 @@
 import {useParams} from "react-router-dom";
 import CoinFetcher from "../components/CoinFetcher";
-import {useEffect} from "react";
 
 function Sell() {
 
     let { id } = useParams();
     const coin = CoinFetcher(id);
-    useEffect(() => {
-        const button = document.querySelector('#sell-button');
-        button.addEventListener('click', async () => {
-            const inputField = document.querySelector('#amount-input');
-            await fetch(`/api/coins/${id}`, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'},
-                method: 'PUT',
-                body: JSON.stringify({"amount": parseFloat(inputField.value)})
-            })
+    async function handleSell() {
+        const inputField = document.querySelector('#amount-input');
+        await fetch(`/api/coins/${id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'PUT',
+            body: JSON.stringify({"amount": parseFloat(inputField.value)})
         })
-    }, []);
+    }
     return (
         <>
                 <div className="header">
@@ -34,7 +31,7 @@ function Sell() {
                     <label htmlFor="amount-input">How much {coin.name} you want to sell?</label>
                     <input id="amount-input" type="text" name="amount"/>
                     <form className="transaction-form">
-                        <button id="sell-button" className="button" type="submit">Sell</button>
+                        <button onClick={handleSell} id="sell-button" className="button" type="submit">Sell</button>
                     </form>
                 </div>
         </>
