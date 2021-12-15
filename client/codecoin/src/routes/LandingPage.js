@@ -1,18 +1,20 @@
 import {Link} from "react-router-dom";
+import LandingPageModule from "../styles/LandingPage.css"
+import Button from "../components/Button";
 
 function LandingPage() {
     return (
-        <div>
+        <div className={"container"}>
             <div className="title">
                 <p className="text primary">We are </p>
                 <p className="text secondary" id="text">the dovari</p>
             </div>
             <div className="buttons">
                 <Link to="/coins">
-                    <button className="button btn-primary">See currencies</button>
+                    <Button className="button btn-contained" text="See currencies"/>
                 </Link>
                 <Link to="/portfolio">
-                    <button className="button btn-secondary">Get started</button>
+                    <Button className="button btn-outlined" text="Get started"/>
                 </Link>
             </div>
         </div>
