@@ -1,0 +1,37 @@
+.currencies {
+    display: grid;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3, 23rem);
+    grid-gap: 40px;
+}
+
+.header {
+    margin-left: 4rem;
+    margin-top: 2rem;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 1151px) {
+    .currencies {
+        grid-template-columns: repeat(2, 23rem);
+        grid-gap: 30px;
+    }
+}
+
+@media screen and (max-width: 725px) {
+    .currencies {
+        grid-template-columns: repeat(1, 23rem);
+        grid-gap: 15px;
+    }
+    .header{
+        margin-left: 0;
+    }
+    .header * {
+        font-size: 36px;
+    }
+}
+
