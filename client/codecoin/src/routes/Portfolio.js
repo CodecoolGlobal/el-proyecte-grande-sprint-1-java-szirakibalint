@@ -1,10 +1,9 @@
 import PortfolioFetcher from "../components/PortfolioFetcher";
-import BalanceFetcher from "../components/BalanceFetcher";
 
 function Portfolio() {
-    const portfolio = PortfolioFetcher();
-    const totalBalance = BalanceFetcher('').totalBalance;
-
+    const fullPortfolio = PortfolioFetcher();
+    const portfolio = fullPortfolio.portfolio;
+    const totalBalance = fullPortfolio.totalBalance;
     return (
         <>
             <div className="header">
@@ -12,7 +11,7 @@ function Portfolio() {
                 <h1>{totalBalance} USD</h1>
             </div>
             <div className="portfolio-content">
-                {portfolio.cryptoCurrencies !== undefined && Object.keys(portfolio.cryptoCurrencies).map((key) => (
+                {portfolio !== undefined && portfolio.cryptoCurrencies !== undefined && Object.keys(portfolio.cryptoCurrencies).map((key) => (
                 <div className="portfolio-card">
                     <p>{key} : {portfolio.cryptoCurrencies[key]}</p>
                 </div>))}
