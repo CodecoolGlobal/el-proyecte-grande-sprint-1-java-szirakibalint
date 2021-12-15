@@ -6,19 +6,17 @@ function Buy() {
 
     let { id } = useParams();
     const coin = CoinFetcher(id);
-    useEffect(() => {
-        const button = document.querySelector('#buy-button');
-        button.addEventListener('click', async () => {
+    async function handleBuy() {
             const inputField = document.querySelector('#amount-input');
             await fetch(`/api/coins/${id}`, {
                 headers: {
                     'Accept': 'application/json',
-                    'Content-Type': 'application/json'},
+                    'Content-Type': 'application/json'
+                },
                 method: 'POST',
                 body: JSON.stringify({"amount": parseFloat(inputField.value)})
             })
-        })
-    }, []);
+        }
     return (
             <>
                 <div className="header">
@@ -34,7 +32,7 @@ function Buy() {
                     <label htmlFor="amount-input">How much {coin.name} you want to buy?</label>
                     <input id="amount-input" type="text" name="amount"/>
                         <form className="transaction-form">
-                            <button id="buy-button" className="button" type="submit">Buy</button>
+                            <button onClick={handleBuy} id="buy-button" className="button" type="submit">Buy</button>
                         </form>
                 </div>
             </>
