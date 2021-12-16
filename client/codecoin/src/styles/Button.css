@@ -1,3 +1,8 @@
+:root {
+    --cc-purple: #6E71E0;
+    --cc-warning: #E06E6E;
+}
+
 .button {
     padding: 15px 20px;
     border-radius: 0.5rem;
@@ -16,4 +21,17 @@
 .btn-outlined {
     color: black;
     background-color: transparent;
+}
+
+.transaction-button {
+    width: 8rem;
+    color: white;
+}
+
+.buy-button {
+    background-color: var(--cc-purple)
+}
+
+.sell-button {
+    background-color: var(--cc-warning)
 }
