@@ -32,6 +32,6 @@ public class UserService {
     }
 
     public BigDecimal getTotalBalance() {
-        return calculator.calculateTotalBalance(userDAO.getPortfolio());
+        return calculator.calculateTotalBalance();
     }
 }
