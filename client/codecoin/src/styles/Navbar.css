@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #dedede;
     margin: 10px 0;
 }
 
@@ -14,8 +14,20 @@
     font-size: 18px;
 }
 
+
 .navbar img {
     width: 175px;
+}
+
+#nav-options {
+    transition: padding-bottom, color 0.3s, border-bottom;
+    transition-timing-function: ease-in;
+}
+
+#nav-options a:hover {
+    padding-bottom: 5px;
+    color: #6E71E0;
+    border-bottom: 2px solid #6E71E0;
 }
 
 @media screen and (max-width: 725px) {
