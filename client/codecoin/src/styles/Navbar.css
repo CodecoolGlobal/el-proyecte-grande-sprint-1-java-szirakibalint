@@ -19,6 +19,17 @@
     width: 175px;
 }
 
+#nav-options {
+    transition: padding-bottom, color 0.3s, border-bottom;
+    transition-timing-function: ease-in;
+}
+
+#nav-options a:hover {
+    padding-bottom: 5px;
+    color: #6E71E0;
+    border-bottom: 2px solid #6E71E0;
+}
+
 @media screen and (max-width: 725px) {
     #nav-options {
         display: none;
