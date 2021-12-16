@@ -4,11 +4,21 @@ import Button from "../components/Button";
 import {Link} from "react-router-dom";
 import CoinDetailsModule from "../styles/CoinDetails.css"
 import React from "react";
+import Loading from "../components/Loading";
 
 function Details() {
     let { id } = useParams();
     const coin = CoinFetcher(id);
-    if (React.isValidElement(coin)) {
+    if (coin === undefined || coin.length === 0) {
+        return (
+            <>
+                <div className="loading-container">
+                    <Loading />
+                </div>
+            </>
+        )
+    }
+    else if (React.isValidElement(coin)) {
         return coin;
     } else {
         return (
