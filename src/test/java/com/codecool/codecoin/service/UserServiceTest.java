@@ -1,7 +1,6 @@
 package com.codecool.codecoin.service;
 
 import com.codecool.codecoin.dao.UserDAO;
-import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.Portfolio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,9 +24,6 @@ class UserServiceTest {
 
     @Mock
     private Portfolio mockfolio;
-
-    @Mock
-    private Cryptocurrency mockCurrency;
 
     @InjectMocks
     private UserService userService;
