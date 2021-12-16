@@ -116,7 +116,7 @@ function PreviewOffer(props) {
             { visible &&
             (<div className="preview-offer">
                     {buyOrSell === "buy" &&
-                        (<p>You can get {amount} {coin.name} for {amount * coin.current_price} USD. Do you take it?</p>)
+                        (<p>You can get {amount} {coin.name} for {amount * coin.current_price} USD. Do you take it? {remainingSecs}s</p>)
                     || (<p>You can get {amount * coin.current_price} USD for {amount} {coin.name}. Do you take it? {remainingSecs}s</p>)}
                 <div className={"offer-buttons"} style={offerButtons}>
                     <button onClick={handleTransaction} id="transaction-button" className="button transaction-button red-button">Take it!</button>
