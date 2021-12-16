@@ -28,16 +28,17 @@ class CalculatorTest {
     @Mock
     private UserDAO mockUserDao;
 
+    @Mock
+    private Portfolio mockfolio;
+
+    @Mock
+    private Cryptocurrency mockCurrency;
+
     @InjectMocks
     private Calculator calculator;
 
-    Portfolio mockfolio;
-    Cryptocurrency mockCurrency;
-
     @BeforeEach
     public void setup() {
-        mockfolio = Mockito.mock(Portfolio.class);
-        mockCurrency = Mockito.mock(Cryptocurrency.class);
         Map<Cryptocurrency, BigDecimal> mockCryptoData = new HashMap<>(){{
             put(mockCurrency, BigDecimal.ONE);
         }};
