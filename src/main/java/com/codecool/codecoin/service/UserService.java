@@ -23,7 +23,7 @@ public class UserService {
         return userDAO.getPortfolio();
     }
 
-    public String buyCryptoCurrency(String id, BigDecimal amount) {
+    public String buyCryptocurrency(String id, BigDecimal amount) {
         return userDAO.buyCrypto(id, amount);
     }
 

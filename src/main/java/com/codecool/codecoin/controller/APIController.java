@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -61,7 +60,7 @@ public class APIController {
     @PostMapping("/coins/{id}")
     public String buyCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
         BigDecimal amount = data.get("amount");
-        return userService.buyCryptoCurrency(id, amount);
+        return userService.buyCryptocurrency(id, amount);
     }
 
     /**
