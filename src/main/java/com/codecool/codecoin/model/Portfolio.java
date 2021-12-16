@@ -39,7 +39,7 @@ public class Portfolio {
      */
     public boolean buyCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
         BigDecimal cost = cryptoCurrency.getCurrentPrice().multiply(amount);
-        if (currencies.get(CurrencyType.USD).compareTo(cost) > -1 && amount.compareTo(BigDecimal.ZERO) > 0) {
+        if (amount.compareTo(BigDecimal.ZERO) > 0 && currencies.get(CurrencyType.USD).compareTo(cost) > -1) {
             currencies.put(CurrencyType.USD, currencies.get(CurrencyType.USD).subtract(cost));
             if (!cryptoCurrencies.containsKey(cryptoCurrency)) {
                 cryptoCurrencies.put(cryptoCurrency, amount);
@@ -60,7 +60,7 @@ public class Portfolio {
      */
     public boolean sellCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
         BigDecimal value = cryptoCurrency.getCurrentPrice().multiply(amount);
-        if (cryptoCurrencies.containsKey(cryptoCurrency) && cryptoCurrencies.get(cryptoCurrency).compareTo(amount) > -1) {
+        if (amount.compareTo(BigDecimal.ZERO) > 0 && cryptoCurrencies.containsKey(cryptoCurrency) && cryptoCurrencies.get(cryptoCurrency).compareTo(amount) > -1) {
             cryptoCurrencies.put(cryptoCurrency, cryptoCurrencies.get(cryptoCurrency).subtract(amount));
             currencies.put(CurrencyType.USD, currencies.get(CurrencyType.USD).add(value));
             return true;
