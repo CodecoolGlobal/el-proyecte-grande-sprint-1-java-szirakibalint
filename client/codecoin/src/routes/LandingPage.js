@@ -4,13 +4,9 @@ import Button from "../components/Button";
 import TypewriterComponent from "typewriter-effect";
 
 function LandingPage() {
-    function writeEffect(typeWriter) {
-
-    }
-
     return (
         <div className={"container"}>
-            <div className="bg-image"></div>
+            <div className="bg-image" />
             <div className="title">
                 <p className="text primary">We are </p>
                 <p className={"text secondary"}>
