@@ -80,11 +80,27 @@ function PreviewOffer(props) {
         clearInterval(document.timer);
     }
 
+    const transaction = {
+        display: "flex",
+        flexDirection: "column"
+    }
+
+    const amountInput = {
+        marginTop: "10px",
+        marginBottom: "20px",
+        border: "none",
+        fontSize: "x-large",
+        padding: "10px",
+        width: "15rem",
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.25)",
+        borderRadius: "16px"
+    }
+
     return (
         <>
-            <div className="transaction">
+            <div className="transaction" style={transaction}>
                 <label htmlFor="amount-input">How much {coinName} you want to {buyOrSell}?</label>
-                <input id="amount-input" type="text" name="amount"/>
+                <input id="amount-input" type="text" name="amount" style={amountInput}/>
                 <button onClick={getPreview} id="offer-button" className="button">Preview</button>
             </div>
             { visible &&
