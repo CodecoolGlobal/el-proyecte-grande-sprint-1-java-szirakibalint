@@ -7,20 +7,12 @@ import java.util.Map;
 public class Portfolio {
     private final Map<Cryptocurrency, BigDecimal> cryptoCurrencies;
     private final Map<CurrencyType, BigDecimal> currencies;
-    private static Portfolio instance;
 
-    private Portfolio() {
+    public Portfolio() {
         cryptoCurrencies = new HashMap<>();
         currencies = new HashMap<>(){{
             put(CurrencyType.USD, BigDecimal.valueOf(20000));
         }};
-    }
-
-    public static Portfolio getInstance() {
-        if (instance == null) {
-            instance = new Portfolio();
-        }
-        return instance;
     }
 
     /**
