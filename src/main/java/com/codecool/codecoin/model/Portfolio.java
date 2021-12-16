@@ -39,7 +39,7 @@ public class Portfolio {
      */
     public boolean buyCrypto(Cryptocurrency cryptoCurrency, BigDecimal amount) {
         BigDecimal cost = cryptoCurrency.getCurrentPrice().multiply(amount);
-        if (currencies.get(CurrencyType.USD).compareTo(cost) > -1) {
+        if (currencies.get(CurrencyType.USD).compareTo(cost) > -1 && amount.compareTo(BigDecimal.ZERO) > 0) {
             currencies.put(CurrencyType.USD, currencies.get(CurrencyType.USD).subtract(cost));
             if (!cryptoCurrencies.containsKey(cryptoCurrency)) {
                 cryptoCurrencies.put(cryptoCurrency, amount);
