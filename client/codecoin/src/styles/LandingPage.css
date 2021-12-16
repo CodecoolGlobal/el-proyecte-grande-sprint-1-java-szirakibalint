@@ -16,7 +16,6 @@
     display: flex;
     justify-content: space-between;
     margin-top: 8rem;
-    margin-left: 4rem;
 }
 
 .text {
@@ -33,7 +32,38 @@
     margin-right: 15px;
 }
 
+@media screen and (min-width: 725px){
+    .buttons {
+        margin-left: 4rem;
+    }
+}
+
 .secondary {
     color: #5EB795;
     font-weight: 300;
+}
+
+@media screen and (max-width: 1160px){
+    .container {
+        background-image: unset;
+        align-items: center;
+    }
+
+    .text {
+        font-size: 48px;
+    }
+}
+
+@media screen and (max-width: 725px){
+    .text {
+        font-size: 24px;
+    }
+    .container {
+        background-image: unset;
+        display: flex;
+        text-align: center;
+    }
+    .buttons {
+
+    }
 }
