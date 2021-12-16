@@ -13,6 +13,7 @@ function Details() {
     } else {
         return (
             <>
+                <div className="crypto-header">
                 <div className={"header"}>
                     <img src={coin.image} className={"detailed-img"} alt=""/>
                     <h1>{coin.name}</h1>
@@ -20,6 +21,7 @@ function Details() {
                 <div className="action">
                     <Link to={'/coins/' + coin.id + '/buy'}><Button className={"button transaction-button buy-button"} text={"Buy"}/></Link>
                     <Link to={'/coins/' + coin.id + '/sell'}><Button className={"button transaction-button sell-button"} text={"Sell"}/></Link>
+                </div>
                 </div>
                 <div className="content">
                     <div className="details">
