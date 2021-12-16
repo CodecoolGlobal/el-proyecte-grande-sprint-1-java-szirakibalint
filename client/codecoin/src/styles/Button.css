@@ -1,5 +1,6 @@
 :root {
     --cc-purple: #6E71E0;
+    --cc-green: #5EB795;
     --cc-warning: #E06E6E;
 }
 
@@ -28,10 +29,14 @@
     color: white;
 }
 
-.buy-button {
+.buy-button, .purple-button {
     background-color: var(--cc-purple)
 }
 
-.sell-button {
+.sell-button, .red-button {
     background-color: var(--cc-warning)
+}
+
+.preview-button, .green-button {
+    background-color: var(--cc-green);
 }

@@ -96,20 +96,32 @@ function PreviewOffer(props) {
         borderRadius: "16px"
     }
 
+    const previewButton = {
+        width: "15rem"
+    }
+
+    const offerButtons = {
+        display: "flex",
+        width: "20rem",
+        justifyContent: "space-evenly"
+    }
+
     return (
         <>
             <div className="transaction" style={transaction}>
                 <label htmlFor="amount-input">How much {coinName} you want to {buyOrSell}?</label>
                 <input id="amount-input" type="text" name="amount" style={amountInput}/>
-                <button onClick={getPreview} id="offer-button" className="button">Preview</button>
+                <button onClick={getPreview} id="offer-button" className="button transaction-button preview-button" style={previewButton}>Preview</button>
             </div>
             { visible &&
             (<div className="preview-offer">
                     {buyOrSell === "buy" &&
                         (<p>You can get {amount} {coin.name} for {amount * coin.current_price} USD. Do you take it?</p>)
                     || (<p>You can get {amount * coin.current_price} USD for {amount} {coin.name}. Do you take it? {remainingSecs}s</p>)}
-                <button onClick={handleTransaction} id="transaction-button" className="button">Take it!</button>
-                <button onClick={cancelTransaction} id="cancel-button" className="button">Cancel</button>
+                <div className={"offer-buttons"} style={offerButtons}>
+                    <button onClick={handleTransaction} id="transaction-button" className="button transaction-button red-button">Take it!</button>
+                    <button onClick={cancelTransaction} id="cancel-button" className="button transaction-button purple-button">Cancel</button>
+                </div>
             </div>)
             }
         </>
