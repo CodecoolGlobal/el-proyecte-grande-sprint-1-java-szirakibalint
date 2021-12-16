@@ -21,28 +21,29 @@ function PreviewOffer(props) {
     }, [])
     function getPreview() {
         const inputField = document.querySelector('#amount-input');
-        getCoin();
-        setAmount(parseFloat(inputField.value));
-        setVisible(true);
-        let seconds = 6;
-        const count = setInterval(() => {
-            if (seconds === 0) {
-                setRemainingSecs(7);
-                clearInterval(count);
-            } else {
-                setRemainingSecs(seconds);
-                seconds--;
-            }
-        }, 1000)
-        clearInterval(document.timer);
-        document.timer = setInterval(() => {
-            setVisible(false);
+        if (inputField.value !== '') {
+            getCoin();
+            setAmount(parseFloat(inputField.value));
+            setVisible(true);
+            let seconds = 6;
+            const count = setInterval(() => {
+                if (seconds === 0) {
+                    setRemainingSecs(7);
+                    clearInterval(count);
+                } else {
+                    setRemainingSecs(seconds);
+                    seconds--;
+                }
+            }, 1000)
             clearInterval(document.timer);
-        }, 7000);
+            document.timer = setInterval(() => {
+                setVisible(false);
+                clearInterval(document.timer);
+            }, 7000);
+        }
     }
 
     async function handleTransaction() {
-        console.log(buyOrSell)
         if (buyOrSell === "buy") {
             await handleBuy();
         } else if (buyOrSell === "sell") {
