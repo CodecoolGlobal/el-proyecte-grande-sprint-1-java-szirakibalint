@@ -1,11 +1,21 @@
 import PortfolioFetcher from "../components/PortfolioFetcher";
 import CoinFetcher from "../components/CoinFetcher";
 import Card from "../components/Card";
+import Loading from "../components/Loading";
+import React from "react";
 
 function Portfolio() {
     const {portfolio, totalBalance} = PortfolioFetcher();
     const coins = CoinFetcher('');
     const portfolioCoins = [];
+
+    if (coins === undefined || coins.length === 0 || !portfolio) {
+        return (
+            <div className="loading-container">
+                <Loading></Loading>
+            </div>
+        )
+    }
 
     if (portfolio) {
         const {cryptoCurrencies} = portfolio;

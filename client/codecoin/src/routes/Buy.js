@@ -2,6 +2,9 @@ import {useParams} from "react-router-dom";
 import CoinFetcher from "../components/CoinFetcher"
 import PortfolioFetcher from "../components/PortfolioFetcher";
 import PreviewOffer from "../components/PreviewOffer";
+import Card from "../components/Card";
+import React from "react";
+import Loading from "../components/Loading";
 
 function Buy() {
 
@@ -11,6 +14,14 @@ function Buy() {
 
     const secondaryContainer = {
         marginLeft: "4rem",
+    }
+
+    if (coin === undefined || coin.length === 0) {
+        return (
+            <div className="loading-container">
+                <Loading></Loading>
+            </div>
+        )
     }
 
     return (
