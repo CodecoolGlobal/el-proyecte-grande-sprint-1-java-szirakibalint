@@ -80,20 +80,48 @@ function PreviewOffer(props) {
         clearInterval(document.timer);
     }
 
+    const transaction = {
+        display: "flex",
+        flexDirection: "column"
+    }
+
+    const amountInput = {
+        marginTop: "10px",
+        marginBottom: "20px",
+        border: "none",
+        fontSize: "x-large",
+        padding: "10px",
+        width: "15rem",
+        boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.25)",
+        borderRadius: "16px"
+    }
+
+    const previewButton = {
+        width: "15rem"
+    }
+
+    const offerButtons = {
+        display: "flex",
+        width: "20rem",
+        justifyContent: "space-evenly"
+    }
+
     return (
         <>
-            <div className="transaction">
+            <div className="transaction" style={transaction}>
                 <label htmlFor="amount-input">How much {coinName} you want to {buyOrSell}?</label>
-                <input id="amount-input" type="text" name="amount"/>
-                <button onClick={getPreview} id="offer-button" className="button">Preview</button>
+                <input id="amount-input" type="text" name="amount" style={amountInput}/>
+                <button onClick={getPreview} id="offer-button" className="button transaction-button preview-button" style={previewButton}>Preview</button>
             </div>
             { visible &&
             (<div className="preview-offer">
                     {buyOrSell === "buy" &&
-                        (<p>You can get {amount} {coin.name} for {amount * coin.current_price} USD. Do you take it?</p>)
+                        (<p>You can get {amount} {coin.name} for {amount * coin.current_price} USD. Do you take it? {remainingSecs}s</p>)
                     || (<p>You can get {amount * coin.current_price} USD for {amount} {coin.name}. Do you take it? {remainingSecs}s</p>)}
-                <button onClick={handleTransaction} id="transaction-button" className="button">Take it!</button>
-                <button onClick={cancelTransaction} id="cancel-button" className="button">Cancel</button>
+                <div className={"offer-buttons"} style={offerButtons}>
+                    <button onClick={handleTransaction} id="transaction-button" className="button transaction-button red-button">Take it!</button>
+                    <button onClick={cancelTransaction} id="cancel-button" className="button transaction-button purple-button">Cancel</button>
+                </div>
             </div>)
             }
         </>

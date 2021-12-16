@@ -18,10 +18,8 @@ function Details() {
                     <h1>{coin.name}</h1>
                 </div>
                 <div className="action">
-                    <Link to={'/coins/' + coin.id + '/buy'}><Button id={"buy"} text={"Buy"}
-                                                                    class={"button btn-contained"}></Button></Link>
-                    <Link to={'/coins/' + coin.id + '/sell'}><Button id={"sell"} text={"Sell"}
-                                                                     class={"button btn-contained"}></Button></Link>
+                    <Link to={'/coins/' + coin.id + '/buy'}><Button className={"button transaction-button buy-button"} text={"Buy"}/></Link>
+                    <Link to={'/coins/' + coin.id + '/sell'}><Button className={"button transaction-button sell-button"} text={"Sell"}/></Link>
                 </div>
                 <div className="content">
                     <div className="details">
