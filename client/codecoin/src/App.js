@@ -19,8 +19,8 @@ function App() {
           <Route path="/coins/:id" element={<Details/>}/>
           <Route path="/coins/:id/buy" element={<Buy/>}/>
           <Route path="/coins/:id/sell" element={<Sell/>}/>
-          <Route path="/error" element={<Error/>}/>
           <Route path="/portfolio" element={<Portfolio/>}/>
+          <Route path="*" element={<Error/>}/>
       </Routes>
       </div>
   );
