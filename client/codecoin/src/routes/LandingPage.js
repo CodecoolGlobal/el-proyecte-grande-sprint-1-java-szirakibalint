@@ -10,6 +10,7 @@ function LandingPage() {
 
     return (
         <div className={"container"}>
+            <div className="bg-image"></div>
             <div className="title">
                 <p className="text primary">We are </p>
                 <p className={"text secondary"}>
