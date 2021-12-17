@@ -17,6 +17,6 @@ public class Configuration {
 
     @Bean
     public Portfolio getPortfolio() {
-        return Portfolio.getInstance();
+        return new Portfolio();
     }
 }
