@@ -78,8 +78,8 @@ public class APIController {
      * Get the portfolio information
      * @return portfolio information in key-value pairs
      */
-    @GetMapping("/portfolio")
-    public Map<String, Object> getPortfolio(@RequestBody Long userId) {
+    @GetMapping("/portfolio/{userId}")
+    public Map<String, Object> getPortfolio(@PathVariable Long userId) {
         User user = userService.findById(userId);
         return new HashMap<>(){{
             put("portfolio", user.getPortfolio());
