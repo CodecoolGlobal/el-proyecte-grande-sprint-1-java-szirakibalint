@@ -2,6 +2,7 @@ package com.codecool.codecoin.model;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class User {
     private String password;
     private Portfolio portfolio;
     private CurrencyType preferredCurrency;
+    @Setter
     private BigDecimal currencyBalance;
     private List<Transaction> transactions;
 
