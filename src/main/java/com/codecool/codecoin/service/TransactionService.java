@@ -41,7 +41,9 @@ public class TransactionService {
     }
 
     private boolean initSell(Portfolio portfolio, Transaction transaction) {
-        return false;
+        Cryptocurrency crypto = transaction.getCrypto();
+        BigDecimal amount = transaction.getCryptoAmount();
+        return portfolio.buyCrypto(crypto, amount);
     }
 
     private void recordTransaction(User user, Transaction transaction) {
