@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +18,16 @@ public class User {
     private CurrencyType preferredCurrency;
     private BigDecimal currencyBalance;
     private List<Transaction> transactions;
+
+    public User(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.portfolio = new Portfolio();
+        this.transactions = new ArrayList<>();
+        this.preferredCurrency = CurrencyType.USD;
+        this.currencyBalance = BigDecimal.valueOf(20000);
+    }
 
     public void recordTransaction(Transaction transaction) {
         transactions.add(transaction);
