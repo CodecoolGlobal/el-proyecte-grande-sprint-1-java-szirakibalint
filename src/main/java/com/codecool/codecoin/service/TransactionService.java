@@ -47,6 +47,7 @@ public class TransactionService {
     }
 
     private void recordTransaction(User user, Transaction transaction) {
-
+        user.recordTransaction(transaction);
+        userService.save(user);
     }
 }
