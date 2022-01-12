@@ -26,7 +26,12 @@ public class TransactionService {
     }
 
     private boolean initTransaction(User user, Transaction transaction) {
-        return false;
+        Portfolio portfolio = user.getPortfolio();
+        if (transaction.getType() == BUY) {
+            return initBuy(portfolio, transaction);
+        } else {
+            return initSell(portfolio, transaction);
+        }
     }
 
     private boolean initBuy(Portfolio portfolio, Transaction transaction) {
