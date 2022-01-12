@@ -1,11 +1,13 @@
 package com.codecool.codecoin.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 public class Transaction {
     private Long id;
     private Long userId;
