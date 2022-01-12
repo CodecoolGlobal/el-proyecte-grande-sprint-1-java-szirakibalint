@@ -1,12 +1,17 @@
 package com.codecool.codecoin.model;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 public class User {
     private Long id;
     private String username;
+    @Getter(AccessLevel.NONE)
     private String password;
     private Portfolio portfolio;
     private CurrencyType preferredCurrency;
