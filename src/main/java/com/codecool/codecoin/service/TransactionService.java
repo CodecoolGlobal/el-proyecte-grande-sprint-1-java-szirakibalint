@@ -17,12 +17,14 @@ public class TransactionService {
         this.userService = userService;
     }
 
-    private void handleTransaction(Transaction transaction) {
+    public boolean handleTransaction(Transaction transaction) {
         User user = userService.findById(transaction.getUserId());
         boolean transactionSuccess = initTransaction(user, transaction);
         if (transactionSuccess) {
             recordTransaction(user, transaction);
+            return true;
         }
+        return false;
     }
 
     private boolean initTransaction(User user, Transaction transaction) {
