@@ -18,6 +18,10 @@ public class User {
     private BigDecimal currencyBalance;
     private List<Transaction> transactions;
 
+    public void recordTransaction(Transaction transaction) {
+        transactions.add(transaction);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
