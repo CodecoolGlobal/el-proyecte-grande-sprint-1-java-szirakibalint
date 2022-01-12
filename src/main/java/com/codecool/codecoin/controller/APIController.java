@@ -3,12 +3,14 @@ package com.codecool.codecoin.controller;
 import com.codecool.codecoin.dao.CryptocurrencyDAO;
 import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.Portfolio;
+import com.codecool.codecoin.model.Transaction;
+import com.codecool.codecoin.model.User;
 import com.codecool.codecoin.service.CryptocurrencyService;
+import com.codecool.codecoin.service.TransactionService;
 import com.codecool.codecoin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -20,16 +22,19 @@ import java.util.Set;
 @RequestMapping("/api")
 public class APIController {
     private final CryptocurrencyService cryptocurrencyService;
+    private final TransactionService transactionService;
     private final UserService userService;
 
     /**
      * Creates an {@link APIController} instance.
      * @param cryptocurrencyService used for accessing {@link Cryptocurrency} data
-     * @param userService used for handling buy and sell logic
+     * @param transactionService used for handling buy and sell logic
+     * @param userService used for user operations
      */
     @Autowired
-    public APIController(CryptocurrencyService cryptocurrencyService, UserService userService) {
+    public APIController(CryptocurrencyService cryptocurrencyService, TransactionService transactionService, UserService userService) {
         this.cryptocurrencyService = cryptocurrencyService;
+        this.transactionService = transactionService;
         this.userService = userService;
     }
 
@@ -52,38 +57,34 @@ public class APIController {
     }
 
     /**
-     * Buy a {@link Cryptocurrency} using the {@link Portfolio}.
-     * @param id an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
-     * @param data contains the decimal amount of {@link Cryptocurrency} to purchase
+     * Buy a {@link Cryptocurrency} using the {@link TransactionService}.
      * @return the outcome of the transaction as a string
      */
-    @PostMapping("/coins/{id}")
-    public String buyCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
-        BigDecimal amount = data.get("amount");
-        return userService.buyCryptocurrency(id, amount);
+    @PostMapping("/coins")
+    public String buyCurrency(@RequestBody Transaction transaction) {
+        return transactionService.handleTransaction(transaction) ? "success" : "fail";
     }
 
     /**
-     * Sell a {@link Cryptocurrency} using the {@link Portfolio}.
-     * @param id an identifier string for a {@link Cryptocurrency} (e.g. "bitcoin")
-     * @param data contains the decimal amount of {@link Cryptocurrency} to purchase
+     * Sell a {@link Cryptocurrency} using the {@link TransactionService}.
      * @return the outcome of the transaction as a string
      */
-    @PutMapping("/coins/{id}")
-    public String sellCurrency(@PathVariable String id, @RequestBody Map<String, BigDecimal> data) {
-        BigDecimal amount = data.get("amount");
-        return userService.sellCryptocurrency(id, amount);
+    @PutMapping("/coins")
+    public String sellCurrency(@RequestBody Transaction transaction) {
+        return transactionService.handleTransaction(transaction) ? "success" : "fail";
     }
 
     /**
-     * Get the {@link Portfolio} instance.
-     * @return Portfolio
+     * Get the portfolio information
+     * @return portfolio information in key-value pairs
      */
-    @GetMapping("/portfolio")
-    public Map<String, Object> getPortfolio() {
+    @GetMapping("/portfolio/{userId}")
+    public Map<String, Object> getPortfolio(@PathVariable Long userId) {
+        User user = userService.findById(userId);
         return new HashMap<>(){{
-            put("portfolio", userService.getPortfolio());
-            put("totalBalance", userService.getTotalBalance());
+            put("portfolio", user.getPortfolio());
+            put("currencyBalance", user.getCurrencyBalance());
+            put("totalBalance", userService.calculateTotalBalance(user));
         }};
     }
 }

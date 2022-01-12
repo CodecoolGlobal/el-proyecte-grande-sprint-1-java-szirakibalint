@@ -51,26 +51,36 @@ function PreviewOffer(props) {
         }
     }
 
+    // TODO store userId in session
+    const defaultUserId = 0;
+
+    const body = {
+        "userId": defaultUserId,
+        "type": buyOrSell.toUpperCase(),
+        "cryptoId": coinId,
+        "cryptoAmount": amount
+    }
+
     async function handleBuy() {
-        await fetch(`/api/coins/${coinId}`, {
+        await fetch(`/api/coins`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method: 'POST',
-            body: JSON.stringify({"amount": amount})
+            body: JSON.stringify(body)
         })
         window.location.reload();
     }
 
     async function handleSell() {
-        await fetch(`/api/coins/${coinId}`, {
+        await fetch(`/api/coins`, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             method: 'PUT',
-            body: JSON.stringify({"amount": amount})
+            body: JSON.stringify(body)
         })
         window.location.reload();
     }

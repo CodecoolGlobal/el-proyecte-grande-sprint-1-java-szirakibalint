@@ -1,37 +1,45 @@
 package com.codecool.codecoin.service;
 
+import com.codecool.codecoin.dao.CryptocurrencyDAO;
 import com.codecool.codecoin.dao.UserDAO;
+import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.Portfolio;
+import com.codecool.codecoin.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 @Service
 public class UserService {
-
     private final UserDAO userDAO;
-    private final Calculator calculator;
+    private final CryptocurrencyDAO cryptocurrencyDAO;
 
     @Autowired
-    public UserService(UserDAO userDAO, Calculator calculator) {
+    public UserService(UserDAO userDAO, CryptocurrencyDAO cryptocurrencyDAO) {
         this.userDAO = userDAO;
-        this.calculator = calculator;
+        this.cryptocurrencyDAO = cryptocurrencyDAO;
     }
 
-    public Portfolio getPortfolio() {
-        return userDAO.getPortfolio();
+    public User findById(Long id) {
+        return userDAO.findById(id);
     }
 
-    public String buyCryptocurrency(String id, BigDecimal amount) {
-        return userDAO.buyCrypto(id, amount);
+    public void save(User user) {
+        userDAO.save(user);
     }
 
-    public String sellCryptocurrency(String id, BigDecimal amount) {
-        return userDAO.sellCrypto(id, amount);
-    }
-
-    public BigDecimal getTotalBalance() {
-        return calculator.calculateTotalBalance();
+    public BigDecimal calculateTotalBalance(User user) {
+        Portfolio portfolio = user.getPortfolio();
+        BigDecimal userBalance = user.getCurrencyBalance();
+        Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
+        BigDecimal totalBalance = userBalance;
+        for (Map.Entry<Cryptocurrency, BigDecimal> entry : cryptocurrencies.entrySet()) {
+            Cryptocurrency cryptocurrencyActualData = cryptocurrencyDAO.getCurrencyById(entry.getKey().getId());
+            BigDecimal value = cryptocurrencyActualData.getCurrentPrice().multiply(entry.getValue());
+            totalBalance = totalBalance.add(value);
+        }
+        return totalBalance;
     }
 }

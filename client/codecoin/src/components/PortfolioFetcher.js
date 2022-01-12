@@ -10,8 +10,10 @@ function PortfolioFetcher() {
         getPortfolio();
     }, [])
 
+    // TODO change id from 0
+
     const fetchPortfolio = async () => {
-        const res = await fetch(`/api/portfolio`)
+        const res = await fetch(`/api/portfolio/0`)
         return await res.json()
     }
     return portfolio;
