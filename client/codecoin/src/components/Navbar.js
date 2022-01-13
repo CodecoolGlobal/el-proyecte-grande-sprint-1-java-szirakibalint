@@ -10,6 +10,8 @@ function Navbar() {
             <div id="nav-options">
                 <Link to="/coins">Currencies</Link>
                 <Link to="/portfolio">Portfolio</Link>
+                <Link to="/register">Register</Link>
+                <Link to="/login">Login</Link>
             </div>
         </div>
     )
