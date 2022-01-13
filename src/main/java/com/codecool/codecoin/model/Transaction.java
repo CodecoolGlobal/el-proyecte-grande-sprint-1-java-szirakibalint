@@ -7,12 +7,26 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 @Getter
 @Setter
 @Entity
 public class Transaction {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "transaction_sequence",
+            sequenceName = "transaction_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "transaction_sequence"
+    )
+    @Column(
+            name = "id",
+            nullable = false
+    )
     private Long id;
     private Long userId;
     private LocalDateTime date;
