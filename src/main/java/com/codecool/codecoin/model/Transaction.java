@@ -3,9 +3,7 @@ package com.codecool.codecoin.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -18,10 +16,12 @@ public class Transaction {
     private Long id;
     private Long userId;
     private LocalDateTime date;
+    @Enumerated(EnumType.STRING)
     private TransactionType type;
     private String cryptoId;
     //private Cryptocurrency crypto;
     private BigDecimal cryptoAmount;
+    @Enumerated(EnumType.STRING)
     private CurrencyType currency;
     private BigDecimal currencyAmount;
 }
