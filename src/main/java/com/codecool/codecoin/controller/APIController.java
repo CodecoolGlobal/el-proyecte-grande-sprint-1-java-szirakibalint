@@ -44,6 +44,11 @@ public class APIController {
         return userService.findById(user.getId());
     }
 
+    @GetMapping("/users/{id}")
+    public User getUser(@PathVariable Long id) {
+        return userService.findById(id);
+    }
+
     /** Fetches all {@link Cryptocurrency} using the {@link CryptocurrencyDAO}.
      * @return Set of all {@link Cryptocurrency}
      */
