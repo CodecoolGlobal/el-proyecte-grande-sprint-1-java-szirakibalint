@@ -1,20 +1,32 @@
 package com.codecool.codecoin.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+
+import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Getter
 public class Portfolio {
     @Id
-    @GeneratedValue
+    @SequenceGenerator(
+            name = "portfolio_sequence",
+            sequenceName = "portfolio_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = SEQUENCE,
+            generator = "portfolio_sequence"
+    )
+    @Column(
+            name = "id",
+            nullable = false
+    )
     private Long id;
     @ElementCollection
     private final Map<String, BigDecimal> cryptoCurrencies;
