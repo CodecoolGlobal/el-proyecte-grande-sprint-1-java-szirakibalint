@@ -52,7 +52,7 @@ function PreviewOffer(props) {
     }
 
     // TODO store userId in session
-    const defaultUserId = 0;
+    const defaultUserId = 1;
 
     const body = {
         "userId": defaultUserId,
