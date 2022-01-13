@@ -62,7 +62,7 @@ public class PortfolioService {
         BigDecimal amount = transaction.getCryptoAmount();
         BigDecimal value = cryptocurrency.getCurrentPrice().multiply(amount);
         Map<String, BigDecimal> cryptoCurrencies = user.getPortfolio().getCryptoCurrencies();
-        if (amount.compareTo(BigDecimal.ZERO) > 0 && cryptoCurrencies.containsKey(cryptocurrency.getId()) && cryptoCurrencies.get(cryptocurrency).compareTo(amount) > -1) {
+        if (amount.compareTo(BigDecimal.ZERO) > 0 && cryptoCurrencies.containsKey(cryptocurrency.getId()) && cryptoCurrencies.get(cryptocurrency.getId()).compareTo(amount) > -1) {
             cryptoCurrencies.put(cryptocurrency.getId(), cryptoCurrencies.get(cryptocurrency.getId()).subtract(amount));
             BigDecimal userBalance = user.getCurrencyBalance();
             user.setCurrencyBalance(userBalance.add(value));
