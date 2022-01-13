@@ -29,6 +29,15 @@ public class Portfolio {
     )
     private Long id;
     @ElementCollection
+    @MapKeyColumn(
+            name = "cryptoId"
+    )
+    @Column(
+            name = "amount"
+    )
+    @CollectionTable(
+            name = "crypto_currencies"
+    )
     private final Map<String, BigDecimal> cryptoCurrencies;
 
     public Portfolio() {
