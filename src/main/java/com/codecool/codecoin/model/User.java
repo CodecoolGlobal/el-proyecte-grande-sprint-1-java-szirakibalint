@@ -16,7 +16,6 @@ import static javax.persistence.GenerationType.SEQUENCE;
 
 @Getter
 @Entity(name = "RegularUser")
-@NoArgsConstructor
 public class User {
     @Id
     @SequenceGenerator(
@@ -53,10 +52,7 @@ public class User {
     )
     private List<Transaction> transactions;
 
-    public User(Long id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
+    public User() {
         this.portfolio = new Portfolio();
         this.transactions = new ArrayList<>();
         this.preferredCurrency = CurrencyType.USD;
