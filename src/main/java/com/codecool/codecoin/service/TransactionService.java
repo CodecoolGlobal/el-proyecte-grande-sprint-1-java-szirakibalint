@@ -2,6 +2,7 @@ package com.codecool.codecoin.service;
 
 import com.codecool.codecoin.model.Transaction;
 import com.codecool.codecoin.model.User;
+import com.codecool.codecoin.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,13 @@ import static com.codecool.codecoin.model.TransactionType.BUY;
 public class TransactionService {
     private final UserService userService;
     private final PortfolioService portfolioService;
+    private final TransactionRepository transactionRepository;
 
     @Autowired
-    public TransactionService(UserService userService, PortfolioService portfolioService) {
+    public TransactionService(UserService userService, PortfolioService portfolioService, TransactionRepository transactionRepository) {
         this.userService = userService;
         this.portfolioService = portfolioService;
+        this.transactionRepository = transactionRepository;
     }
 
     public boolean handleTransaction(Transaction transaction) {
@@ -46,6 +49,7 @@ public class TransactionService {
 
     private void recordTransaction(User user, Transaction transaction) {
         user.recordTransaction(transaction);
+        transactionRepository.save(transaction);
         userService.save(user);
     }
 }
