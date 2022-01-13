@@ -33,10 +33,10 @@ public class UserService {
     public BigDecimal calculateTotalBalance(User user) {
         Portfolio portfolio = user.getPortfolio();
         BigDecimal userBalance = user.getCurrencyBalance();
-        Map<Cryptocurrency, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
+        Map<String, BigDecimal> cryptocurrencies = portfolio.getCryptoCurrencies();
         BigDecimal totalBalance = userBalance;
-        for (Map.Entry<Cryptocurrency, BigDecimal> entry : cryptocurrencies.entrySet()) {
-            Cryptocurrency cryptocurrencyActualData = cryptocurrencyDAO.getCurrencyById(entry.getKey().getId());
+        for (Map.Entry<String, BigDecimal> entry : cryptocurrencies.entrySet()) {
+            Cryptocurrency cryptocurrencyActualData = cryptocurrencyDAO.getCurrencyById(entry.getKey());
             BigDecimal value = cryptocurrencyActualData.getCurrentPrice().multiply(entry.getValue());
             totalBalance = totalBalance.add(value);
         }
