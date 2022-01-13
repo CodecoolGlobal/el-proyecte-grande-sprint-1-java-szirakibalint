@@ -20,6 +20,7 @@ public class User {
     private String password;
     @OneToOne
     private Portfolio portfolio;
+    @Enumerated(EnumType.STRING)
     private CurrencyType preferredCurrency;
     @Setter
     private BigDecimal currencyBalance;
