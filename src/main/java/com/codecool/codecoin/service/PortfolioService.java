@@ -39,7 +39,7 @@ public class PortfolioService {
             } else {
                 cryptoCurrencies.put(cryptocurrency.getId(), cryptoCurrencies.get(cryptocurrency.getId()).add(amount));
             }
-            transaction.setCrypto(cryptocurrency);
+            //transaction.setCrypto(cryptocurrency);
             transaction.setCurrencyAmount(cost);
             transaction.setDate(LocalDateTime.now());
             transaction.setCurrency(CurrencyType.USD);
@@ -66,7 +66,7 @@ public class PortfolioService {
             cryptoCurrencies.put(cryptocurrency.getId(), cryptoCurrencies.get(cryptocurrency.getId()).subtract(amount));
             BigDecimal userBalance = user.getCurrencyBalance();
             user.setCurrencyBalance(userBalance.add(value));
-            transaction.setCrypto(cryptocurrency);
+            //transaction.setCrypto(cryptocurrency);
             transaction.setCurrencyAmount(value);
             transaction.setDate(LocalDateTime.now());
             transaction.setCurrency(CurrencyType.USD);
