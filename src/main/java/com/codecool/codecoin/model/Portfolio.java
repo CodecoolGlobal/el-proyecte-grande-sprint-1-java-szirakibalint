@@ -1,21 +1,25 @@
 package com.codecool.codecoin.model;
 
+import lombok.Getter;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
+@Getter
 public class Portfolio {
-    private final Map<Cryptocurrency, BigDecimal> cryptoCurrencies;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @ElementCollection
+    private final Map<String, BigDecimal> cryptoCurrencies;
 
     public Portfolio() {
         cryptoCurrencies = new HashMap<>();
-    }
-
-    /**
-     * Get {@link Cryptocurrency} balances from Portfolio.
-     * @return cryptocurrencies and amounts as key-value pairs in a Map
-     */
-    public Map<Cryptocurrency, BigDecimal> getCryptoCurrencies() {
-        return cryptoCurrencies;
     }
 }
