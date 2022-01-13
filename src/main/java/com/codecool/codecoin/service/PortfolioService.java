@@ -27,19 +27,19 @@ public class PortfolioService {
      * @return the outcome of the transaction as a boolean value
      */
     public boolean buyCrypto(User user, Transaction transaction) {
-        Cryptocurrency cryptoCurrency = cryptocurrencyService.getCurrencyById(transaction.getCryptoId());
+        Cryptocurrency cryptocurrency = cryptocurrencyService.getCurrencyById(transaction.getCryptoId());
         BigDecimal amount = transaction.getCryptoAmount();
-        BigDecimal cost = cryptoCurrency.getCurrentPrice().multiply(amount);
+        BigDecimal cost = cryptocurrency.getCurrentPrice().multiply(amount);
         BigDecimal userBalance = user.getCurrencyBalance();
-        Map<Cryptocurrency, BigDecimal> cryptoCurrencies = user.getPortfolio().getCryptoCurrencies();
+        Map<String, BigDecimal> cryptoCurrencies = user.getPortfolio().getCryptoCurrencies();
         if (amount.compareTo(BigDecimal.ZERO) > 0 && userBalance.compareTo(cost) > -1) {
             user.setCurrencyBalance(userBalance.subtract(cost));
-            if (!cryptoCurrencies.containsKey(cryptoCurrency)) {
-                cryptoCurrencies.put(cryptoCurrency, amount);
+            if (!cryptoCurrencies.containsKey(cryptocurrency.getId())) {
+                cryptoCurrencies.put(cryptocurrency.getId(), amount);
             } else {
-                cryptoCurrencies.put(cryptoCurrency, cryptoCurrencies.get(cryptoCurrency).add(amount));
+                cryptoCurrencies.put(cryptocurrency.getId(), cryptoCurrencies.get(cryptocurrency.getId()).add(amount));
             }
-            transaction.setCrypto(cryptoCurrency);
+            transaction.setCrypto(cryptocurrency);
             transaction.setCurrencyAmount(cost);
             transaction.setDate(LocalDateTime.now());
             transaction.setCurrency(CurrencyType.USD);
@@ -58,15 +58,15 @@ public class PortfolioService {
      * @return the outcome of the transaction as a boolean value
      */
     public boolean sellCrypto(User user, Transaction transaction) {
-        Cryptocurrency cryptoCurrency = cryptocurrencyService.getCurrencyById(transaction.getCryptoId());
+        Cryptocurrency cryptocurrency = cryptocurrencyService.getCurrencyById(transaction.getCryptoId());
         BigDecimal amount = transaction.getCryptoAmount();
-        BigDecimal value = cryptoCurrency.getCurrentPrice().multiply(amount);
-        Map<Cryptocurrency, BigDecimal> cryptoCurrencies = user.getPortfolio().getCryptoCurrencies();
-        if (amount.compareTo(BigDecimal.ZERO) > 0 && cryptoCurrencies.containsKey(cryptoCurrency) && cryptoCurrencies.get(cryptoCurrency).compareTo(amount) > -1) {
-            cryptoCurrencies.put(cryptoCurrency, cryptoCurrencies.get(cryptoCurrency).subtract(amount));
+        BigDecimal value = cryptocurrency.getCurrentPrice().multiply(amount);
+        Map<String, BigDecimal> cryptoCurrencies = user.getPortfolio().getCryptoCurrencies();
+        if (amount.compareTo(BigDecimal.ZERO) > 0 && cryptoCurrencies.containsKey(cryptocurrency.getId()) && cryptoCurrencies.get(cryptocurrency).compareTo(amount) > -1) {
+            cryptoCurrencies.put(cryptocurrency.getId(), cryptoCurrencies.get(cryptocurrency.getId()).subtract(amount));
             BigDecimal userBalance = user.getCurrencyBalance();
             user.setCurrencyBalance(userBalance.add(value));
-            transaction.setCrypto(cryptoCurrency);
+            transaction.setCrypto(cryptocurrency);
             transaction.setCurrencyAmount(value);
             transaction.setDate(LocalDateTime.now());
             transaction.setCurrency(CurrencyType.USD);
