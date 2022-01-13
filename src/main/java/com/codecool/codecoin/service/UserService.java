@@ -5,6 +5,7 @@ import com.codecool.codecoin.dao.UserDAO;
 import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.Portfolio;
 import com.codecool.codecoin.model.User;
+import com.codecool.codecoin.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,17 +14,17 @@ import java.util.Map;
 
 @Service
 public class UserService {
-    private final UserDAO userDAO;
+    private final UserRepository userDAO;
     private final CryptocurrencyDAO cryptocurrencyDAO;
 
     @Autowired
-    public UserService(UserDAO userDAO, CryptocurrencyDAO cryptocurrencyDAO) {
+    public UserService(UserRepository userDAO, CryptocurrencyDAO cryptocurrencyDAO) {
         this.userDAO = userDAO;
         this.cryptocurrencyDAO = cryptocurrencyDAO;
     }
 
     public User findById(Long id) {
-        return userDAO.findById(id);
+        return userDAO.findById(id).orElse(null);
     }
 
     public void save(User user) {
