@@ -30,7 +30,8 @@
 }
 
 .buy-button, .purple-button {
-    background-color: var(--cc-purple)
+    background-color: var(--cc-purple);
+    color: white;
 }
 
 .sell-button, .red-button {

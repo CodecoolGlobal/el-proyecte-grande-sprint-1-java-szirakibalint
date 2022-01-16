@@ -7,6 +7,8 @@ import Sell from "./routes/Sell";
 import Error from "./routes/Error";
 import Portfolio from "./routes/Portfolio";
 import Navbar from "./components/Navbar";
+import Register from "./routes/Register";
+import Login from "./routes/Login";
 import React from "react";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
           <Route path="/coins/:id/buy" element={<Buy/>}/>
           <Route path="/coins/:id/sell" element={<Sell/>}/>
           <Route path="/portfolio" element={<Portfolio/>}/>
+          <Route path={"/register"} element={<Register/>}/>
+          <Route path={"/login"} element={<Login/>}/>
           <Route path="*" element={<Error/>}/>
       </Routes>
       </div>
