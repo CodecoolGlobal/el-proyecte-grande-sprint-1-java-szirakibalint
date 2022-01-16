@@ -22,9 +22,9 @@ function App() {
           <Route path="/coins/:id/buy" element={<Buy/>}/>
           <Route path="/coins/:id/sell" element={<Sell/>}/>
           <Route path="/portfolio" element={<Portfolio/>}/>
-          <Route path="*" element={<Error/>}/>
           <Route path={"/register"} element={<Register/>}/>
           <Route path={"/login"} element={<Login/>}/>
+          <Route path="*" element={<Error/>}/>
       </Routes>
       </div>
   );
