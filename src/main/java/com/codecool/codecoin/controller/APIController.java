@@ -2,7 +2,6 @@ package com.codecool.codecoin.controller;
 
 import com.codecool.codecoin.dao.CryptocurrencyDAO;
 import com.codecool.codecoin.model.Cryptocurrency;
-import com.codecool.codecoin.model.Portfolio;
 import com.codecool.codecoin.model.Transaction;
 import com.codecool.codecoin.model.User;
 import com.codecool.codecoin.service.CryptocurrencyService;
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,6 +42,11 @@ public class APIController {
     public User createUser(@RequestBody User user) {
         userService.save(user);
         return userService.findById(user.getId());
+    }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return userService.findAll();
     }
 
     @GetMapping("/users/{id}")
