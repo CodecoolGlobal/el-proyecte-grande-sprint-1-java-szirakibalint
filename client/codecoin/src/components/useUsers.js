@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import Error from "../routes/Error";
 
-function useUsers(id) {
+function useUsers(id, onlyUsernames) {
     const [user, setUser] = useState([])
     useEffect(async () => {
         const userFromAPI = await fetchUser()
@@ -10,12 +10,16 @@ function useUsers(id) {
 
     async function fetchUser() {
         let res
+        let route;
+        if (id === '' && !onlyUsernames) {
+            route = `/api/users`;
+        } else if (id === '') {
+            route = `/api/usernames`;
+        } else {
+            route = `/api/users/` + id;
+        }
         try {
-            if (id === '') {
-                res = await fetch(`/api/users`)
-            } else {
-                res = await fetch(`/api/users/${id}`)
-            }
+            res = await fetch(route)
             return await res.json()
         } catch (e) {
             if (id === '') {
