@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -20,6 +21,10 @@ public class UserService {
     public UserService(UserRepository userRepository, CryptocurrencyDAO cryptocurrencyDAO) {
         this.userRepository = userRepository;
         this.cryptocurrencyDAO = cryptocurrencyDAO;
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     public User findById(Long id) {
