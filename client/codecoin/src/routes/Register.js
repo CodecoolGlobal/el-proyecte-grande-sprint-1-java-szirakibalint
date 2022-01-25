@@ -1,6 +1,6 @@
 import LoginModule from "../styles/Login.css"
 import useUsers from "../components/useUsers";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function Register() {
 
@@ -10,14 +10,16 @@ function Register() {
     const[secondPassword, setSecondPassword] = useState([]);
     const[buttonDisabled, setButtonDisabled] = useState(true);
 
+    useEffect(() => {
+        setButtonDisabled(!validateData());
+    })
+
     function updateInputValue(event, setInput) {
         setInput(event.target.value);
-        setButtonDisabled(!validateData());
-        console.log(username);
     }
+
     function validateData() {
         return !(firstPassword !== secondPassword || firstPassword.length < 6 || username.length < 6);
-
     }
     return (
         <div>
