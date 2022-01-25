@@ -54,6 +54,11 @@ public class APIController {
         return userService.findById(id);
     }
 
+    @GetMapping("/usernames")
+    public List<String> getAllUsernames() {
+        return userService.findAllUsernames();
+    }
+
     /** Fetches all {@link Cryptocurrency} using the {@link CryptocurrencyDAO}.
      * @return Set of all {@link Cryptocurrency}
      */
