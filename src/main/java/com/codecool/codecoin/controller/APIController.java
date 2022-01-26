@@ -39,9 +39,9 @@ public class APIController {
     }
 
     @PostMapping("/users")
-    public User createUser(@RequestBody User user) {
+    public Long createUser(@RequestBody User user) {
         userService.save(user);
-        return userService.findById(user.getId());
+        return user.getId();
     }
 
     @GetMapping("/users")
