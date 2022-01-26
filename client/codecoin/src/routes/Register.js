@@ -53,6 +53,7 @@ function Register() {
                     "password": firstPassword
                 })
             })
+            window.location.href = `/login`;
         }
     }
 
