@@ -11,7 +11,9 @@ import Register from "./routes/Register";
 import Login from "./routes/Login";
 import React from "react";
 
+
 function App() {
+    sessionStorage.setItem("user-id", null);
   return (
       <div className="App">
       <Navbar/>
