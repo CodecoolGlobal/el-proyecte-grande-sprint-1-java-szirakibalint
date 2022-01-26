@@ -1,15 +1,15 @@
 package com.codecool.codecoin.model;
 
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.GenerationType.SEQUENCE;
@@ -33,8 +33,17 @@ public class User {
     )
     private Long id;
     private String username;
-    @Getter(AccessLevel.NONE)
     private String password;
+    @ElementCollection(
+            fetch = FetchType.EAGER
+    )
+    @Column(
+            name = "role"
+    )
+    @CollectionTable(
+            name = "roles"
+    )
+    private Set<SimpleGrantedAuthority> roles;
     @OneToOne(
             cascade = PERSIST
     )
@@ -57,6 +66,8 @@ public class User {
         this.transactions = new ArrayList<>();
         this.preferredCurrency = CurrencyType.USD;
         this.currencyBalance = BigDecimal.valueOf(20000);
+        // TODO handle admin role
+        this.roles = Set.of(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     public void recordTransaction(Transaction transaction) {
