@@ -10,10 +10,8 @@ function PortfolioFetcher() {
         getPortfolio();
     }, [])
 
-    // TODO change id from 1
-
     const fetchPortfolio = async () => {
-        const res = await fetch(`/api/portfolio/1`)
+        const res = await fetch(`/api/portfolio/${sessionStorage.getItem("user-id")}`)
         return await res.json()
     }
     return portfolio;
