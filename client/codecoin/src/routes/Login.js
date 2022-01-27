@@ -10,8 +10,10 @@ function Login() {
         setInput(event.target.value);
     }
 
+    // TODO improve lazy solution
     async function submitLogin() {
-        const response = await fetch(`/api/users/login`, {
+        console.log({username, password})
+        const userResponse = await fetch("/api/users/login", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -22,13 +24,27 @@ function Login() {
                 "password": password
             })
         })
-        const {id} = await response.json();
-        if (id === "-1") {
+        const jwtResponse = await fetch("/authenticate", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                "username": username,
+                "password": password
+            })
+        })
+        const {id} = await userResponse.json();
+        const {jwt} = await jwtResponse.json();
+        console.log({jwt, userResponse});
+        if (id === "-1" || jwt === undefined) {
             setErrorMessage("Invalid email or password");
         }
         else {
+            sessionStorage.setItem("jwt", jwt);
             sessionStorage.setItem("user-id", id);
-            window.location.href = `/portfolio/${id}`;
+            window.location.href = `/portfolio`;
         }
 
     }
