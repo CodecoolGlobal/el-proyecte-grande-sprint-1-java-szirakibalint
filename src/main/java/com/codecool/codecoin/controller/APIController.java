@@ -1,6 +1,7 @@
 package com.codecool.codecoin.controller;
 
 import com.codecool.codecoin.dao.CryptocurrencyDAO;
+import com.codecool.codecoin.model.AuthenticationRequest;
 import com.codecool.codecoin.model.Cryptocurrency;
 import com.codecool.codecoin.model.Transaction;
 import com.codecool.codecoin.model.User;
@@ -10,10 +11,7 @@ import com.codecool.codecoin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A class for API endpoint methods.
@@ -52,6 +50,15 @@ public class APIController {
     @GetMapping("/users/{id}")
     public User getUser(@PathVariable Long id) {
         return userService.findById(id);
+    }
+
+    @PostMapping("/users/login")
+    public User login(@RequestBody AuthenticationRequest request) {
+        User user = userService.findByUsername(request.getUsername());
+        if ((user != null) && user.getPassword().equals(request.getPassword())) {
+            return user;
+        }
+        return new User();
     }
 
     @GetMapping("/usernames")
