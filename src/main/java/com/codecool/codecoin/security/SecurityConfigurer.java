@@ -3,6 +3,7 @@ package com.codecool.codecoin.security;
 import com.codecool.codecoin.security.filters.JwtRequestFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -32,12 +33,17 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // TODO restrict access to users
         http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-                // TODO secure endpoints
-//                .anyRequest().authenticated()
+                .antMatchers("/api/usernames").permitAll()
+                .antMatchers("/api/users").permitAll()
+                .antMatchers( "/api/users/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/coins").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/coins/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
