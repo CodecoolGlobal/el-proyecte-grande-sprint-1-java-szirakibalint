@@ -1,0 +1,12 @@
+# hidden folders
+.idea
+.git
+.cache
+
+# folders
+client
+target
+src/test
+
+# files
+*.md
