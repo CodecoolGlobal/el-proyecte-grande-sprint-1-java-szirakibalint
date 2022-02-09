@@ -11,6 +11,7 @@ import Register from "./routes/Register";
 import Login from "./routes/Login";
 import {useEffect, useState} from "react";
 import {UserContext} from "./components/UserContext"
+import Transactions from "./routes/Transactions";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/portfolio" element={<Portfolio/>}/>
           <Route path={"/register"} element={<Register/>}/>
           <Route path={"/login"} element={<Login />}/>
+          <Route path={"/transactions"} element={<Transactions/>}/>
           <Route path="*" element={<Error/>}/>
       </Routes>
           </UserContext.Provider>
