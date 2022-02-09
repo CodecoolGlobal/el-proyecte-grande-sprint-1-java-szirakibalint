@@ -3,6 +3,7 @@ import useTransactions from "../components/useTransactions";
 import Loading from "../components/Loading";
 import TransactionRow from "../components/TransactionRow";
 import "../styles/TransactionHistory.css"
+import {Link} from "react-router-dom";
 
 const Transactions = () => {
     const transactions = useTransactions();
@@ -24,7 +25,7 @@ const Transactions = () => {
             <div className={"transaction-empty-container"}>
                 <h1>You haven't made any transaction yet.</h1>
                 <p>You can go and check the newest currencies below</p>
-                <button className={"button btn-contained"}>See currencies</button>
+                <button className={"button btn-contained"}><Link to="/coins">See currencies</Link></button>
             </div>
             </>
         )
