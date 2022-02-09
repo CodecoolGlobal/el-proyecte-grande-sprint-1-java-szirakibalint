@@ -2,17 +2,24 @@ import React, {useContext, useEffect, useState} from 'react';
 import { pushRotate as Menu } from 'react-burger-menu';
 import '../styles/Sidebar.css';
 import {UserContext} from "./UserContext";
+import { Turn as Hamburger } from 'hamburger-react'
 
 
 export default props => {
     let [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
+    const [isOpen, setOpen] = useState(false);
     function clearSession() {
         sessionStorage.clear();
         setIsLoggedIn(false);
     }
+    let isMenuOpen = function() {
+        setOpen(!isOpen)
+        return isOpen;
+    };
+
     if (isLoggedIn) {
         return (
-            <Menu right width={'100%'}>
+            <Menu onStateChange={ isMenuOpen } customBurgerIcon={<Hamburger toggled={isOpen} toggle={isMenuOpen}/>}  noOverlay right width={'100%'}>
                 <a className="menu-item" href="/coins">
                     Currencies
                 </a>
@@ -27,7 +34,7 @@ export default props => {
     }
     else {
         return (
-            <Menu noOverlay right width={'100%'}>
+            <Menu customBurgerIcon={ <Hamburger/> } noOverlay right width={'100%'}>
                 <a className="menu-item" href="/coins">
                     Currencies
                 </a>
