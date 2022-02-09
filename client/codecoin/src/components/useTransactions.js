@@ -21,7 +21,9 @@ function useTransactions() {
                         'Authorization': `Bearer ${jwt}`
                     }
                 })
-            return await res.json()
+            let data = await res.json()
+            data = data.length === 0 ? "empty" : data
+            return data
         } catch (e) {
             return Error(`Error: failed to fetch transaction history from API endpoint /api/transactions/${userId}`);
         }

@@ -6,7 +6,6 @@ import "../styles/TransactionHistory.css"
 
 const Transactions = () => {
     const transactions = useTransactions();
-    //TODO validate if user has no transactions yet
     if (transactions.length === 0) {
         return (
             <>
@@ -18,7 +17,19 @@ const Transactions = () => {
                 </div>
             </>
         )
-    } else if (React.isValidElement(transactions)) {
+    }
+    else if (transactions === "empty") {
+        return (
+            <>
+            <div className={"transaction-empty-container"}>
+                <h1>You haven't made any transaction yet.</h1>
+                <p>You can go and check the newest currencies below</p>
+                <button className={"button btn-contained"}>See currencies</button>
+            </div>
+            </>
+        )
+    }
+    else if (React.isValidElement(transactions)) {
         return transactions;
     }
     else {

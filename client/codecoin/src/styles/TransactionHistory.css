@@ -1,3 +1,30 @@
+.transaction-empty-container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-top: 10rem;
+    text-align: center;
+}
+
+.transaction-empty-container h1 {
+    color: #6E71E0;
+    font-size: 48px;
+    margin-bottom: unset;
+}
+
+.transaction-empty-container p {
+    font-weight: lighter;
+    margin-bottom: 5rem;
+}
+
+.transaction-empty-container button {
+    max-width: 15rem;
+    align-self: center;
+    justify-self: center;
+}
+
+
 .transaction-history-table-container {
     margin: 0 10vw;
     overflow-x:auto;
