@@ -2,9 +2,11 @@ import React from 'react';
 import useTransactions from "../components/useTransactions";
 import Loading from "../components/Loading";
 import TransactionRow from "../components/TransactionRow";
+import "../styles/TransactionHistory.css"
 
 const Transactions = () => {
     const transactions = useTransactions();
+    //TODO validate if user has no transactions yet
     if (transactions.length === 0) {
         return (
             <>
@@ -18,7 +20,8 @@ const Transactions = () => {
         )
     } else if (React.isValidElement(transactions)) {
         return transactions;
-    } else {
+    }
+    else {
         return (
             <>
                 <div className="header">
@@ -26,7 +29,8 @@ const Transactions = () => {
                 </div>
                 <div className="transaction-history-table-container">
                 <table>
-                    <tr>
+                    <thead>
+                    <tr >
                         <th>Crypto</th>
                         <th>Crypto Amount</th>
                         <th>Transaction Type</th>
@@ -34,7 +38,10 @@ const Transactions = () => {
                         <th>Currency Amount</th>
                         <th>Date</th>
                     </tr>
-                    {transactions.map((transaction) => <TransactionRow transaction={transaction}/>)}
+                    </thead>
+                    <tbody>
+                        {transactions.map((transaction) => <TransactionRow transaction={transaction}/>)}
+                    </tbody>
                 </table>
                 </div>
             </>
