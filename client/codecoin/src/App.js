@@ -26,7 +26,8 @@ function App() {
 
 
     return (
-      <div className="App">
+      <div className="App" id="outer-container">
+          <div id="outer-container">
           <UserContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
       <Navbar/>
       <Routes>
@@ -41,6 +42,7 @@ function App() {
           <Route path="*" element={<Error/>}/>
       </Routes>
           </UserContext.Provider>
+          </div>
       </div>
   );
 }

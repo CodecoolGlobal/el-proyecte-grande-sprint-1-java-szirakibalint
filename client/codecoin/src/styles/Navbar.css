@@ -43,4 +43,13 @@
     #nav-options {
         display: none;
     }
+    .navbar .menu a {
+        color: white;
+    }
+}
+
+@media screen and (min-width: 726px){
+    .menu {
+        display: none;
+    }
 }
