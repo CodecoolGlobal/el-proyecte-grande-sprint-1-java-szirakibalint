@@ -6,11 +6,11 @@ const TransactionRow = (props) => {
     return (
         <tr>
             <td>{cryptoId}</td>
-            <td>{cryptoAmount}</td>
-            <td>{type}</td>
-            <td>{currency}</td>
-            <td>{currencyAmount}</td>
-            <td>{date}</td>
+            <td >{cryptoAmount}</td>
+            <td >{type}</td>
+            <td >{currency}</td>
+            <td >{currencyAmount}</td>
+            <td >{date.split("T")[0]}</td>
         </tr>
     )
 }
