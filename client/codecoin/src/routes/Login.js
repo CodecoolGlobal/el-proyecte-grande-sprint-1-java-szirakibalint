@@ -1,10 +1,12 @@
 import LoginModule from "../styles/Login.css"
 import {useState, useContext} from "react";
+import {UserContext} from "../components/UserContext";
 
 function Login() {
     const[username, setUsername] = useState([]);
     const[password, setPassword] = useState([]);
     const[errorMessage, setErrorMessage] = useState("");
+    const [loggedIn, setIsLoggedIn] = useContext(UserContext)
 
     function updateInputValue(event, setInput) {
         setInput(event.target.value);
@@ -42,9 +44,10 @@ function Login() {
             setErrorMessage("Invalid email or password");
         }
         else {
+            setIsLoggedIn(true);
             sessionStorage.setItem("jwt", jwt);
             sessionStorage.setItem("user-id", id);
-            window.location.href = `/portfolio`;
+
         }
 
     }
