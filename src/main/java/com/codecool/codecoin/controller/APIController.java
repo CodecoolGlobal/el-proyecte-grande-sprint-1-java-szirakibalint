@@ -1,8 +1,8 @@
 package com.codecool.codecoin.controller;
 
 import com.codecool.codecoin.dao.CryptocurrencyDAO;
+import com.codecool.codecoin.model.AuthenticationRequest;
 import com.codecool.codecoin.model.Cryptocurrency;
-import com.codecool.codecoin.model.Portfolio;
 import com.codecool.codecoin.model.Transaction;
 import com.codecool.codecoin.model.User;
 import com.codecool.codecoin.service.CryptocurrencyService;
@@ -11,9 +11,7 @@ import com.codecool.codecoin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * A class for API endpoint methods.
@@ -39,14 +37,33 @@ public class APIController {
     }
 
     @PostMapping("/users")
-    public User createUser(@RequestBody User user) {
+    public Long createUser(@RequestBody User user) {
         userService.save(user);
-        return userService.findById(user.getId());
+        return user.getId();
+    }
+
+    @GetMapping("/users")
+    public List<User> getAllUsers() {
+        return userService.findAll();
     }
 
     @GetMapping("/users/{id}")
     public User getUser(@PathVariable Long id) {
         return userService.findById(id);
+    }
+
+    @PostMapping("/users/login")
+    public User login(@RequestBody AuthenticationRequest request) {
+        User user = userService.findByUsername(request.getUsername());
+        if ((user != null) && user.getPassword().equals(request.getPassword())) {
+            return user;
+        }
+        return new User();
+    }
+
+    @GetMapping("/usernames")
+    public List<String> getAllUsernames() {
+        return userService.findAllUsernames();
     }
 
     /** Fetches all {@link Cryptocurrency} using the {@link CryptocurrencyDAO}.

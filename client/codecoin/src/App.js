@@ -9,11 +9,25 @@ import Portfolio from "./routes/Portfolio";
 import Navbar from "./components/Navbar";
 import Register from "./routes/Register";
 import Login from "./routes/Login";
-import React from "react";
+import {useEffect, useState} from "react";
+import {UserContext} from "./components/UserContext"
+
 
 function App() {
-  return (
+    let [isLoggedIn, setIsLoggedIn] = useState(null);
+
+    useEffect(() => {
+        setIsLoggedIn(userLoggedIn());
+    }, [])
+
+    function userLoggedIn() {
+        return sessionStorage?.getItem("user-id") !== null;
+    }
+
+
+    return (
       <div className="App">
+          <UserContext.Provider value={[isLoggedIn, setIsLoggedIn]}>
       <Navbar/>
       <Routes>
           <Route path="/" exact element={<LandingPage/>}/>
@@ -23,9 +37,10 @@ function App() {
           <Route path="/coins/:id/sell" element={<Sell/>}/>
           <Route path="/portfolio" element={<Portfolio/>}/>
           <Route path={"/register"} element={<Register/>}/>
-          <Route path={"/login"} element={<Login/>}/>
+          <Route path={"/login"} element={<Login />}/>
           <Route path="*" element={<Error/>}/>
       </Routes>
+          </UserContext.Provider>
       </div>
   );
 }

@@ -51,11 +51,11 @@ function PreviewOffer(props) {
         }
     }
 
-    // TODO store userId in session
-    const defaultUserId = 1;
+
+    const jwt = sessionStorage.getItem("jwt")
 
     const body = {
-        "userId": defaultUserId,
+        "userId": sessionStorage.getItem("user-id"),
         "type": buyOrSell.toUpperCase(),
         "cryptoId": coinId,
         "cryptoAmount": amount
@@ -65,7 +65,8 @@ function PreviewOffer(props) {
         await fetch(`/api/coins`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
             },
             method: 'POST',
             body: JSON.stringify(body)
@@ -77,7 +78,8 @@ function PreviewOffer(props) {
         await fetch(`/api/coins`, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${jwt}`
             },
             method: 'PUT',
             body: JSON.stringify(body)
