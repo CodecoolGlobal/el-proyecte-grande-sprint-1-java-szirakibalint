@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: Build docker images
         uses: actions/checkout@v2
-      - run: docker-compose -f codecoin.yml up --build && docker ps -a
+      - run: docker-compose -f codecoin.yml run --build && docker ps -a
