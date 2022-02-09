@@ -5,8 +5,13 @@
     align-items: center;
     border-bottom: 1px solid #dedede;
     position: fixed;
-    width: 100%;
+    width: 100vw;
     top: 0;
+}
+
+.nav-log {
+    float: right;
+    margin-right: 30px;
 }
 
 .navbar a {
@@ -24,6 +29,8 @@
 #nav-options {
     transition: padding-bottom, color 0.3s, border-bottom;
     transition-timing-function: ease-in;
+    width: 100vw;
+    align-content: center;
 }
 
 #nav-options a:hover {
