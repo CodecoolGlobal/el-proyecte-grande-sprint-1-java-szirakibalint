@@ -4,11 +4,11 @@
     flex-direction: column;
     background-image: url("../bg.png");
     background-repeat: no-repeat;
-    background-position: 100% -5rem;
+    background-position: 100% -2rem;
 }
 
 .title {
-    margin: 10rem 4rem 4rem;
+    margin: 14rem 4rem 4rem;
 }
 
 .buttons {
