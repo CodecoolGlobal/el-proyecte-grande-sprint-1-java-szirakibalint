@@ -17,8 +17,10 @@ function Navbar() {
                 </div>
                 <div id="nav-options">
                     <Link to="/coins">Currencies</Link>
-                    <Link to="/portfolio">Portfolio</Link>
-                    <Link onClick={clearSession} to="/coins">Logout</Link>
+                    <div className={"nav-log"}>
+                        <Link to="/portfolio">Portfolio</Link>
+                        <Link onClick={clearSession} to="/coins">Logout</Link>
+                    </div>
                 </div>
             </div>
         )
@@ -31,8 +33,10 @@ function Navbar() {
             </div>
             <div id="nav-options">
                 <Link to="/coins">Currencies</Link>
-                <Link to="/register">Register</Link>
-                <Link to="/login">Login</Link>
+                <div className={"nav-log"}>
+                    <Link to="/register">Register</Link>
+                    <Link to="/login">Login</Link>
+                </div>
             </div>
         </div>
     )
