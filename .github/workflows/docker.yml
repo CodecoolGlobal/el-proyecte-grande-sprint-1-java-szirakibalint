@@ -12,5 +12,5 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Build docker images
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - run: docker-compose -f codecoin.yml up --build && docker ps -a
