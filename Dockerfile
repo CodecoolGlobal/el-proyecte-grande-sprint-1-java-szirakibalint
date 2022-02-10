@@ -13,4 +13,4 @@ WORKDIR /app
 RUN chown -R javauser:javauser /app
 USER javauser
 CMD "dumb-init" "java" "-jar" "codecoin.jar"
-EXPOSE $PORT
+EXPOSE 8080
