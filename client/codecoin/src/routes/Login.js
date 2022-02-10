@@ -53,6 +53,7 @@ function Login() {
     }
 
     return (
+        <div className={"full-container"}>
         <div className={"sign-content"}>
             <div className="sign-details">
                 <h1 className={"form-title"}>Sign in</h1>
@@ -63,6 +64,7 @@ function Login() {
                 <button onClick={submitLogin} className={"button purple-button"}>Sign in</button>
                 <div>{errorMessage}</div>
             </div>
+        </div>
         </div>
     )
 }
