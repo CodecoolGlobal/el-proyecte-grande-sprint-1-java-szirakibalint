@@ -10,6 +10,8 @@ jobs:
       runs-on: ubuntu-latest
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
       steps:
+        - name: set permissions
+        - run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
         - name: checkout repo
           uses: actions/checkout@v2
         - name: Build, Push and Deploy to Heroku
