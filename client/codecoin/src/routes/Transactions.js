@@ -25,7 +25,7 @@ const Transactions = () => {
             <div className={"transaction-empty-container"}>
                 <h1>You haven't made any transaction yet.</h1>
                 <p>You can go and check the newest currencies below</p>
-                <button className={"button btn-contained"}><Link to="/coins">See currencies</Link></button>
+                <Link to="/coins"><button className={"button btn-contained"}>See currencies</button></Link>
             </div>
             </>
         )
