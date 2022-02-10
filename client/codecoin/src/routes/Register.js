@@ -58,7 +58,7 @@ function Register() {
     }
 
     return (
-        <div>
+        <div className={"full-container"}>
             <div className={"sign-content"}>
                 <div className="sign-details">
                     <h1 className={"form-title"}>Register</h1>

@@ -12,19 +12,27 @@ export default props => {
         sessionStorage.clear();
         setIsLoggedIn(false);
     }
-    let isMenuOpen = function() {
+    let changeOpen = function() {
         setOpen(!isOpen)
         return isOpen;
     };
 
     if (isLoggedIn) {
         return (
-            <Menu onStateChange={ isMenuOpen } customBurgerIcon={<Hamburger toggled={isOpen} toggle={isMenuOpen}/>}  noOverlay right width={'100%'}>
+            <Menu
+                onStateChange={ changeOpen }
+                customBurgerIcon={<Hamburger toggled={isOpen} toggle={changeOpen}/>}
+                noOverlay
+                right
+                width={'100%'}>
                 <a className="menu-item" href="/coins">
                     Currencies
                 </a>
                 <a className="menu-item" href="/portfolio">
                     Portfolio
+                </a>
+                <a className="menu-item" href="/transactions">
+                    My transaction history
                 </a>
                 <a className="menu-item" onClick={clearSession}>
                     Logout
@@ -34,7 +42,7 @@ export default props => {
     }
     else {
         return (
-            <Menu customBurgerIcon={ <Hamburger/> } noOverlay right width={'100%'}>
+            <Menu onStateChange={changeOpen} customBurgerIcon={<Hamburger toggled={isOpen} toggle={changeOpen}/>} noOverlay right width={'100%'}>
                 <a className="menu-item" href="/coins">
                     Currencies
                 </a>
