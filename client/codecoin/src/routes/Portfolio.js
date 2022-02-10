@@ -12,7 +12,7 @@ function Portfolio() {
     if (coins === undefined || coins.length === 0 || !portfolio) {
         return (
             <div className="loading-container">
-                <Loading></Loading>
+                <Loading />
             </div>
         )
     }

@@ -115,4 +115,13 @@ public class APIController {
             put("totalBalance", userService.calculateTotalBalance(user));
         }};
     }
+
+    /**
+    * Get the transaction history for a given user by userId
+    * @return set of transactions
+    */
+    @GetMapping("/transactions/{userId}")
+    public Set<Transaction> getAllTransactionsByUserId(@PathVariable Long userId) {
+        return transactionService.getAllByUserId(userId);
+    }
 }

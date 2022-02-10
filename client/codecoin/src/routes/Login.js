@@ -1,12 +1,24 @@
 import LoginModule from "../styles/Login.css"
-import {useState, useContext} from "react";
+import {useState, useContext, useEffect} from "react";
 import {UserContext} from "../components/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const[username, setUsername] = useState([]);
     const[password, setPassword] = useState([]);
     const[errorMessage, setErrorMessage] = useState("");
     const [loggedIn, setIsLoggedIn] = useContext(UserContext)
+    let navigate = useNavigate();
+
+    function goToRegistration() {
+        navigate("/register")
+    }
+
+    useEffect(() => {
+        if (loggedIn) {
+            return navigate("/portfolio")
+        }
+    })
 
     function updateInputValue(event, setInput) {
         setInput(event.target.value);
@@ -53,6 +65,7 @@ function Login() {
     }
 
     return (
+        <div className={"full-container"}>
         <div className={"sign-content"}>
             <div className="sign-details">
                 <h1 className={"form-title"}>Sign in</h1>
@@ -61,8 +74,10 @@ function Login() {
                 <label htmlFor={"password"}>Password</label>
                 <input className={"form-input"} id={"confirm-password"} name={"password"} type={"password"} placeholder={"code.coin@iotiger.hello"} onChange={event => updateInputValue(event, setPassword)}/>
                 <button onClick={submitLogin} className={"button purple-button"}>Sign in</button>
+                <button onClick={goToRegistration} className={"button btn-outlined"}>Create new account</button>
                 <div>{errorMessage}</div>
             </div>
+        </div>
         </div>
     )
 }
