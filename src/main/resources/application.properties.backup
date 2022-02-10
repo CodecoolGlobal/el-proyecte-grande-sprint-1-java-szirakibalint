@@ -1,4 +1,6 @@
-spring.datasource.url=${DATABASE_URL}
+spring.datasource.url=jdbc:postgresql://${PSQL_HOST}:5432/${PSQL_DB_NAME}
+spring.datasource.username=${PSQL_USERNAME}
+spring.datasource.password=${PSQL_PASSWORD}
 
 spring.jpa.hibernate.ddl-auto=create-drop
 spring.jpa.show-sql=false
