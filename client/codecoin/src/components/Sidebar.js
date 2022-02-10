@@ -28,11 +28,11 @@ export default props => {
                 <a className="menu-item" href="/coins">
                     Currencies
                 </a>
-                <a className="menu-item" href="/portfolio">
-                    Portfolio
-                </a>
                 <a className="menu-item" href="/transactions">
                     My transaction history
+                </a>
+                <a className="menu-item" href="/portfolio">
+                    Portfolio
                 </a>
                 <a className="menu-item" onClick={clearSession}>
                     Logout
@@ -50,7 +50,7 @@ export default props => {
                     Register
                 </a>
                 <a className="menu-item" href="/login">
-                    Login
+                    Sign in
                 </a>
             </Menu>
         );
