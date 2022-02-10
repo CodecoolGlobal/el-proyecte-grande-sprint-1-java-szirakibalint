@@ -3,6 +3,10 @@ import NavbarModule from "../styles/Navbar.css"
 import {useContext, useEffect} from "react";
 import {UserContext} from "./UserContext";
 import Sidebar from "./Sidebar";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import { faSignIn } from '@fortawesome/free-solid-svg-icons'
 
 function Navbar() {
     let [isLoggedIn, setIsLoggedIn] = useContext(UserContext);
@@ -19,8 +23,9 @@ function Navbar() {
                 <div id="nav-options">
                     <Link to="/coins">Currencies</Link>
                     <div className={"nav-log"}>
-                        <Link to="/portfolio">Portfolio</Link>
-                        <Link onClick={clearSession} to="/coins">Logout</Link>
+                        <Link to="/transactions">My transactions</Link>
+                        <Link to="/portfolio"><FontAwesomeIcon size="lg" icon={faUserCircle} /></Link>
+                        <Link onClick={clearSession} to="/coins"><FontAwesomeIcon size="lg" icon={faArrowRightFromBracket} /></Link>
                     </div>
                 </div>
                 <div className="menu">
@@ -39,7 +44,7 @@ function Navbar() {
                 <Link to="/coins">Currencies</Link>
                 <div className={"nav-log"}>
                     <Link to="/register">Register</Link>
-                    <Link to="/login">Login</Link>
+                    <Link to="/login">Sign in</Link>
                 </div>
             </div>
             <div className="menu">
