@@ -6,6 +6,8 @@ import com.codecool.codecoin.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 import static com.codecool.codecoin.model.TransactionType.BUY;
 
 @Service
@@ -51,5 +53,9 @@ public class TransactionService {
         user.recordTransaction(transaction);
         transactionRepository.save(transaction);
         userService.save(user);
+    }
+
+    public Set<Transaction> getAllByUserId(Long userId) {
+        return transactionRepository.getAllByUserId(userId);
     }
 }
